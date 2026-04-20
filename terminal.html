@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>0x21 · Arch Terminal · Certifications</title>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #0a0c10;
+      font-family: 'JetBrains Mono', monospace;
+      height: 100vh;
+      width: 100vw;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Fondo dinámico con gradientes */
+    .bg-gradient {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at 20% 30%, #0a0c15, #020308);
+      z-index: -2;
+    }
+
+    .bg-glow {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    .glow-1 {
+      position: absolute;
+      top: 20%;
+      left: 10%;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(56, 189, 248, 0.12), transparent 70%);
+      border-radius: 50%;
+      filter: blur(60px);
+      animation: floatGlow 12s ease-in-out infinite;
+    }
+
+    .glow-2 {
+      position: absolute;
+      bottom: 10%;
+      right: 5%;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(168, 85, 247, 0.1), transparent 70%);
+      border-radius: 50%;
+      filter: blur(70px);
+      animation: floatGlow 15s ease-in-out infinite reverse;
+    }
+
+    @keyframes floatGlow {
+      0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.5; }
+      50% { transform: translate(30px, -20px) scale(1.1); opacity: 0.8; }
+    }
+
+    /* Canvas partículas */
+    #particle-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    /* Contenedor terminal */
+    .terminal-container {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+
+    .terminal-window {
+      width: 100%;
+      max-width: 900px;
+      height: auto;
+      max-height: 85vh;
+      background: rgba(5, 8, 14, 0.92);
+      backdrop-filter: blur(16px);
+      border-radius: 1.5rem;
+      border: 1px solid rgba(56, 189, 248, 0.4);
+      box-shadow: 0 25px 45px -12px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(56, 189, 248, 0.1);
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    /* Terminal header (barra estilo terminal) */
+    .terminal-header {
+      background: rgba(12, 16, 24, 0.9);
+      padding: 0.8rem 1.2rem;
+      border-bottom: 1px solid rgba(56, 189, 248, 0.3);
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .window-controls {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .window-control {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+    }
+
+    .close { background: #ff5f56; }
+    .minimize { background: #ffbd2e; }
+    .maximize { background: #27c93f; }
+
+    .terminal-title {
+      color: #6c7a92;
+      font-size: 0.75rem;
+      flex: 1;
+      text-align: center;
+      letter-spacing: 0.5px;
+    }
+
+    /* Cuerpo de la terminal con scroll */
+    .terminal-body {
+      padding: 1.5rem;
+      min-height: 500px;
+      max-height: 65vh;
+      overflow-y: auto;
+      font-size: 0.85rem;
+      line-height: 1.6;
+      scroll-behavior: smooth;
+    }
+
+    .terminal-body::-webkit-scrollbar {
+      width: 6px;
+    }
+    .terminal-body::-webkit-scrollbar-track {
+      background: #0f1219;
+    }
+    .terminal-body::-webkit-scrollbar-thumb {
+      background: #2d4a6e;
+      border-radius: 10px;
+    }
+
+    /* Líneas de la terminal */
+    .line {
+      margin-bottom: 0.5rem;
+      white-space: pre-wrap;
+      word-break: break-word;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .prompt {
+      color: #38bdf8;
+      font-weight: 600;
+    }
+
+    .command {
+      color: #eef2ff;
+    }
+
+    .output {
+      color: #9aa9c1;
+      margin-left: 1rem;
+      border-left: 2px solid rgba(56, 189, 248, 0.3);
+      padding-left: 1rem;
+    }
+
+    /* Blinking cursor */
+    .cursor {
+      display: inline-block;
+      width: 8px;
+      height: 1rem;
+      background-color: #38bdf8;
+      vertical-align: middle;
+      margin-left: 4px;
+      animation: blink 1s step-end infinite;
+      box-shadow: 0 0 5px #38bdf8;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
+    /* Certifications cards */
+    .cert-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .cert-card {
+      background: rgba(8, 12, 18, 0.8);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      border-radius: 1rem;
+      padding: 1rem;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+
+    .cert-card:hover {
+      transform: translateY(-3px);
+      border-color: #38bdf8;
+      box-shadow: 0 0 15px rgba(56, 189, 248, 0.2);
+    }
+
+    .cert-name {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #38bdf8;
+      margin-bottom: 0.5rem;
+    }
+
+    .cert-status {
+      font-size: 0.7rem;
+      color: #facc15;
+      background: rgba(250, 204, 21, 0.1);
+      display: inline-block;
+      padding: 0.2rem 0.6rem;
+      border-radius: 20px;
+    }
+
+    .cert-progress {
+      margin-top: 0.8rem;
+      height: 4px;
+      background: #1e2a3a;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .cert-progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, #38bdf8, #c084fc);
+      width: 0%;
+      border-radius: 4px;
+      transition: width 1s ease;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-top: 1.5rem;
+      color: #6c7a92;
+      text-decoration: none;
+      font-size: 0.75rem;
+      transition: color 0.2s;
+    }
+
+    .back-link:hover {
+      color: #38bdf8;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .terminal-container { padding: 1rem; }
+      .terminal-body { padding: 1rem; font-size: 0.7rem; }
+      .cert-name { font-size: 0.9rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="bg-gradient"></div>
+  <div class="bg-glow">
+    <div class="glow-1"></div>
+    <div class="glow-2"></div>
+  </div>
+  <canvas id="particle-canvas"></canvas>
+
+  <div class="terminal-container">
+    <div class="terminal-window">
+      <div class="terminal-header">
+        <div class="window-controls">
+          <div class="window-control close"></div>
+          <div class="window-control minimize"></div>
+          <div class="window-control maximize"></div>
+        </div>
+        <div class="terminal-title">0x21@archiso ~/certifications</div>
+      </div>
+      <div class="terminal-body" id="terminalBody">
+        <!-- El contenido se generará dinámicamente con JS -->
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ========== PARTÍCULAS DE FONDO ==========
+    const canvas = document.getElementById('particle-canvas');
+    const ctx = canvas.getContext('2d');
+    let width, height;
+    let particles = [];
+
+    function resizeCanvas() {
+      width = window.innerWidth;
+      height = window.innerHeight;
+      canvas.width = width;
+      canvas.height = height;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    class Particle {
+      constructor() {
+        this.x = Math.random() * width;
+        this.y = Math.random() * height;
+        this.vx = (Math.random() - 0.5) * 0.25;
+        this.vy = (Math.random() - 0.5) * 0.18;
+        this.size = Math.random() * 2;
+        this.alpha = Math.random() * 0.3 + 0.1;
+      }
+      update() {
+        this.x += this.vx;
+        this.y += this.vy;
+        if (this.x < 0) this.x = width;
+        if (this.x > width) this.x = 0;
+        if (this.y < 0) this.y = height;
+        if (this.y > height) this.y = 0;
+      }
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(56, 189, 248, ${this.alpha})`;
+        ctx.fill();
+      }
+    }
+
+    function initParticles() {
+      particles = [];
+      for (let i = 0; i < 70; i++) {
+        particles.push(new Particle());
+      }
+    }
+
+    function animateParticles() {
+      ctx.clearRect(0, 0, width, height);
+      for (let p of particles) {
+        p.update();
+        p.draw();
+      }
+      requestAnimationFrame(animateParticles);
+    }
+
+    initParticles();
+    animateParticles();
+
+    // ========== TERMINAL ANIMATION ==========
+    const terminalBody = document.getElementById('terminalBody');
+    
+    // Líneas de la terminal (simulando boot de Arch Linux)
+    const bootLines = [
+      { type: 'output', content: ':: Starting Arch Linux initialization...' },
+      { type: 'output', content: ':: Loading kernel modules...' },
+      { type: 'output', content: ':: Checking filesystems...' },
+      { type: 'output', content: ':: Mounting filesystems...' },
+      { type: 'output', content: ':: Starting networking services...' },
+      { type: 'output', content: ':: Network interface: eth0 - [UP]' },
+      { type: 'output', content: ':: DHCP lease acquired: 10.0.2.15' },
+      { type: 'output', content: ':: Starting system logger...' },
+      { type: 'output', content: ':: Starting cron daemon...' },
+      { type: 'output', content: ':: Starting sshd... [OK]' },
+      { type: 'output', content: '' },
+      { type: 'prompt', content: 'Arch Linux 6.8.1-arch1-1 (tty1)' },
+      { type: 'output', content: '' },
+      { type: 'prompt', content: 'archiso login: ' },
+      { type: 'command', content: 'root' },
+      { type: 'output', content: 'Password: ********' },
+      { type: 'output', content: '' },
+      { type: 'prompt', content: `Last login: ${new Date().toLocaleString()} on tty1` },
+      { type: 'output', content: '' },
+      { type: 'prompt', content: '[root@archiso ~]# ' },
+      { type: 'command', content: 'whoami' },
+      { type: 'output', content: 'root' },
+      { type: 'prompt', content: '[root@archiso ~]# ' },
+      { type: 'command', content: 'hostname' },
+      { type: 'output', content: 'archiso' },
+      { type: 'prompt', content: '[root@archiso ~]# ' },
+      { type: 'command', content: 'uname -a' },
+      { type: 'output', content: 'Linux archiso 6.8.1-arch1-1 #1 SMP PREEMPT_DYNAMIC x86_64 GNU/Linux' },
+      { type: 'prompt', content: '[root@archiso ~]# ' },
+      { type: 'command', content: 'echo "Welcome, 0x21. Initializing certification environment..."' },
+      { type: 'output', content: 'Welcome, 0x21. Initializing certification environment...' },
+      { type: 'prompt', content: '[root@archiso ~]# ' },
+      { type: 'command', content: './cert_check --status' }
+    ];
+
+    let currentLineIndex = 0;
+    let isTyping = false;
+
+    function addLine(type, content) {
+      const lineDiv = document.createElement('div');
+      lineDiv.className = 'line';
+      
+      if (type === 'prompt') {
+        lineDiv.innerHTML = `<span class="prompt">${content}</span><span class="cursor"></span>`;
+        terminalBody.appendChild(lineDiv);
+        terminalBody.scrollTop = terminalBody.scrollHeight;
+        return lineDiv;
+      } else if (type === 'command') {
+        lineDiv.innerHTML = `<span class="prompt">[root@archiso ~]# </span><span class="command">${content}</span>`;
+      } else {
+        lineDiv.innerHTML = `<span class="output">${content}</span>`;
+      }
+      
+      terminalBody.appendChild(lineDiv);
+      terminalBody.scrollTop = terminalBody.scrollHeight;
+      return lineDiv;
+    }
+
+    async function typeCommand(element, text, speed = 30) {
+      isTyping = true;
+      const span = element.querySelector('.command');
+      if (!span) return;
+      
+      span.textContent = '';
+      for (let i = 0; i < text.length; i++) {
+        span.textContent += text[i];
+        await new Promise(resolve => setTimeout(resolve, speed));
+      }
+      isTyping = false;
+    }
+
+    async function animateTerminal() {
+      for (let i = 0; i < bootLines.length; i++) {
+        const line = bootLines[i];
+        
+        if (line.type === 'prompt') {
+          addLine('prompt', line.content);
+          await new Promise(resolve => setTimeout(resolve, 200));
+        } else if (line.type === 'command') {
+          const lineElement = addLine('command', '');
+          const commandSpan = lineElement.querySelector('.command');
+          if (commandSpan) {
+            await typeCommand(lineElement, line.content, 20);
+          }
+          await new Promise(resolve => setTimeout(resolve, 300));
+        } else {
+          addLine('output', line.content);
+          await new Promise(resolve => setTimeout(resolve, 60));
+        }
+      }
+      
+      // Mostrar certificaciones después del boot
+      await new Promise(resolve => setTimeout(resolve, 800));
+      showCertifications();
+    }
+
+    function showCertifications() {
+      // Añadir líneas de separación
+      addLine('output', '');
+      addLine('output', '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+      addLine('output', '  🎓 CERTIFICATION STATUS REPORT — IN PROGRESS');
+      addLine('output', '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+      addLine('output', '');
+      
+      // Crear grid de certificaciones
+      const certs = [
+        { name: 'CCNA', status: 'In Progress', progress: 45, icon: 'fa-network-wired' },
+        { name: 'CCNP', status: 'In Progress', progress: 25, icon: 'fa-diagram-project' },
+        { name: 'OSCP', status: 'In Progress', progress: 60, icon: 'fa-shield-haltered' },
+        { name: 'CompTIA Security+', status: 'In Progress', progress: 35, icon: 'fa-lock' }
+      ];
+      
+      const gridDiv = document.createElement('div');
+      gridDiv.className = 'cert-grid';
+      
+      certs.forEach(cert => {
+        const card = document.createElement('div');
+        card.className = 'cert-card';
+        card.innerHTML = `
+          <i class="fas ${cert.icon}" style="font-size: 1.8rem; color: #38bdf8; margin-bottom: 0.5rem; display: block;"></i>
+          <div class="cert-name">${cert.name}</div>
+          <span class="cert-status"><i class="fas fa-sync-alt" style="margin-right: 4px;"></i> ${cert.status}</span>
+          <div class="cert-progress">
+            <div class="cert-progress-bar" style="width: ${cert.progress}%"></div>
+          </div>
+          <div style="font-size: 0.65rem; margin-top: 0.5rem; color: #6c7a92;">${cert.progress}% complete</div>
+        `;
+        gridDiv.appendChild(card);
+      });
+      
+      terminalBody.appendChild(gridDiv);
+      terminalBody.scrollTop = terminalBody.scrollHeight;
+      
+      // Añadir líneas finales
+      setTimeout(() => {
+        addLine('output', '');
+        addLine('output', '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+        addLine('prompt', '[root@archiso ~]# ');
+        addLine('command', './cert_tracker --estimate completion');
+        
+        setTimeout(() => {
+          addLine('output', '');
+          addLine('output', '📅 Estimated completion timeline:');
+          addLine('output', '  • CCNA: Q3 2026');
+          addLine('output', '  • Security+: Q4 2026');
+          addLine('output', '  • OSCP: Q1 2027');
+          addLine('output', '  • CCNP: Q3 2027');
+          addLine('output', '');
+          addLine('output', '✅ Certification pipeline active. Status: TRACKING');
+          addLine('prompt', '[root@archiso ~]# ');
+          addLine('command', 'echo "0x21 — constant growth, relentless pursuit."');
+          
+          setTimeout(() => {
+            addLine('output', '0x21 — constant growth, relentless pursuit.');
+            addLine('prompt', '[root@archiso ~]# ');
+            
+            // Añadir enlace de vuelta
+            const backLink = document.createElement('a');
+            backLink.href = 'index.html';
+            backLink.className = 'back-link';
+            backLink.innerHTML = '<i class="fas fa-arrow-left"></i> ← Back to portfolio';
+            terminalBody.appendChild(backLink);
+            terminalBody.scrollTop = terminalBody.scrollHeight;
+          }, 400);
+        }, 500);
+      }, 500);
+    }
+
+    // Iniciar animación al cargar
+    window.addEventListener('load', () => {
+      setTimeout(animateTerminal, 500);
+    });
+  </script>
+</body>
+</html>
