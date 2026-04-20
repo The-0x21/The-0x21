@@ -187,6 +187,15 @@
       padding-left: 0.5rem;
     }
 
+    .ascii-art {
+      color: #38bdf8;
+      line-height: 1.2;
+      margin: 1rem 0;
+      text-align: center;
+      white-space: pre;
+      font-size: 0.7rem;
+    }
+
     .cursor {
       display: inline-block;
       width: 8px;
@@ -237,6 +246,7 @@
       background: rgba(56, 189, 248, 0.1);
       border-radius: 50%;
       padding: 0.5rem;
+      overflow: hidden;
     }
 
     .cert-logo img {
@@ -277,14 +287,67 @@
       transition: width 1s ease;
     }
 
+    /* Estilo mejorado para detalles de certificación */
+    .cert-detail-box {
+      background: rgba(8, 12, 18, 0.6);
+      border: 1px solid #38bdf8;
+      border-radius: 1rem;
+      margin: 1rem 0;
+      overflow: hidden;
+    }
+
+    .cert-detail-header {
+      background: linear-gradient(135deg, rgba(56, 189, 248, 0.15), rgba(192, 132, 252, 0.1));
+      padding: 0.8rem 1.2rem;
+      border-bottom: 1px solid #38bdf8;
+    }
+
+    .cert-detail-header h3 {
+      color: #38bdf8;
+      font-size: 1.1rem;
+    }
+
+    .cert-detail-section {
+      padding: 0.8rem 1.2rem;
+      border-bottom: 1px solid rgba(56, 189, 248, 0.15);
+    }
+
+    .cert-detail-section:last-child {
+      border-bottom: none;
+    }
+
+    .section-label {
+      color: #c084fc;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
     .tech-tag {
       background: rgba(56, 189, 248, 0.1);
       border: 1px solid rgba(56, 189, 248, 0.3);
       padding: 0.2rem 0.6rem;
       border-radius: 20px;
-      font-size: 0.65rem;
+      font-size: 0.7rem;
       display: inline-block;
       margin: 0.2rem;
+    }
+
+    .knowledge-item {
+      color: #9aa9c1;
+      font-size: 0.8rem;
+      margin: 0.3rem 0;
+      padding-left: 1rem;
+      position: relative;
+    }
+
+    .knowledge-item::before {
+      content: '>';
+      position: absolute;
+      left: 0;
+      color: #38bdf8;
     }
 
     .back-link {
@@ -397,15 +460,43 @@
     initParticles();
     animateParticles();
 
+    // ========== ASCII ARCH LOGO ==========
+    const archAscii = `
+ 
+                   -`
+                  .o+`
+                 `ooo/
+                `+oooo:
+               `+oooooo:
+               -+oooooo+:
+             `/:-:++oooo+:
+            `/++++/+++++++:
+           `/++++++++++++++:
+          `/+++ooooooooooooo/`
+         ./ooosssso++osssssso+`
+        .oossssso-````/ossssss+`
+       -osssssso.      :ssssssso.
+      :osssssss/        osssso+++.
+     /ossssssss/        +ssssooo/-
+   `/ossssso+/:-        -:/+osssso+-
+  `+sso+:-`                 `.-/+oso:
+ `++:.                           `-/+/
+ .`                                 `/
+
+   
+   `;
+
     // ========== CERTIFICATION DATA ==========
+    // IMAGENES PLACEHOLDER: reemplaza 'imagen1.jpg', 'imagen2.jpg' con tus logos reales
     const certsData = {
       ccna: {
         name: 'CCNA',
         vendor: 'Cisco',
-        logo: 'https://upload.wikimedia.org/wikipedia/commons/0/08/Cisco_logo_blue_2016.svg',
+        logo: 'cisco-logo.jpg',
         progress: 45,
         complexity: 'Intermediate',
         estimated: 'Q3 2026',
+        color: '#38bdf8',
         technologies: ['Cisco IOS', 'OSPF/EIGRP/BGP', 'VLANs/Trunking/STP', 'IPv4/IPv6', 'NAT/ACLs', 'Python Automation', 'Wireshark', 'SD-WAN basics'],
         knowledge: [
           'Network fundamentals and OSI model',
@@ -420,10 +511,11 @@
       ccnp: {
         name: 'CCNP',
         vendor: 'Cisco',
-        logo: 'https://upload.wikimedia.org/wikipedia/commons/0/08/Cisco_logo_blue_2016.svg',
+        logo: 'cisco-logo.jpg',
         progress: 25,
         complexity: 'Advanced',
         estimated: 'Q3 2027',
+        color: '#c084fc',
         technologies: ['Advanced OSPF/EIGRP/BGP', 'MPLS', 'DMVPN/FlexVPN', 'QoS', 'Cisco SD-WAN', 'Netmiko/NAPALM', 'RESTCONF/NETCONF', 'Multicast routing'],
         knowledge: [
           'Advanced routing and redistribution',
@@ -438,10 +530,11 @@
       oscp: {
         name: 'OSCP',
         vendor: 'Offensive Security',
-        logo: 'https://www.offensive-security.com/images/offsec-logo.svg',
+        logo: 'oscp-logo.jpg',
         progress: 60,
         complexity: 'Advanced',
         estimated: 'Q1 2027',
+        color: '#f97316',
         technologies: ['Kali Linux', 'Nmap', 'Metasploit', 'Burp Suite', 'Python Exploit Dev', 'Bash/PowerShell', 'Privilege Escalation', 'SQLmap', 'Netcat'],
         knowledge: [
           'Penetration testing methodologies',
@@ -457,10 +550,11 @@
       security: {
         name: 'CompTIA Security+',
         vendor: 'CompTIA',
-        logo: 'https://images.credly.com/images/f7e6b4b4-5f6a-4b6c-8b6c-8b6c8b6c8b6c/comptia-security-plus-logo.png',
+        logo: 'comptia-logo.jpg',
         progress: 35,
         complexity: 'Intermediate',
         estimated: 'Q4 2026',
+        color: '#10b981',
         technologies: ['Firewalls (pfSense/iptables)', 'IDS/IPS (Snort)', 'SIEM (Splunk)', 'PKI/SSL/TLS', 'VPN (IPsec/OpenVPN)', 'Linux/Windows Security', 'Nessus', 'Wireshark'],
         knowledge: [
           'Threats, vulnerabilities and attacks',
@@ -479,18 +573,17 @@
     const terminalBody = document.getElementById('terminalBody');
     
     const bootLines = [
-      { type: 'output', content: ':: Starting Arch Linux initialization...' },
-      { type: 'output', content: ':: Loading kernel modules...' },
-      { type: 'output', content: ':: Checking filesystems...' },
-      { type: 'output', content: ':: Mounting filesystems...' },
-      { type: 'output', content: ':: Starting networking services...' },
-      { type: 'output', content: ':: Network interface: eth0 - [UP]' },
-      { type: 'output', content: ':: DHCP lease acquired: 10.0.2.15' },
-      { type: 'output', content: ':: Starting system logger...' },
-      { type: 'output', content: ':: Starting cron daemon...' },
+      { type: 'ascii', content: archAscii },
+      { type: 'output', content: ':: Arch Linux 6.8.1-arch1-1 (tty1)' },
+      { type: 'output', content: ':: Starting system initialization...' },
+      { type: 'output', content: ':: Loading kernel modules... [OK]' },
+      { type: 'output', content: ':: Checking filesystems... [OK]' },
+      { type: 'output', content: ':: Mounting filesystems... [OK]' },
+      { type: 'output', content: ':: Starting networking services... [OK]' },
+      { type: 'output', content: ':: Network interface: eth0 - [UP] 10.0.2.15' },
+      { type: 'output', content: ':: Starting system logger... [OK]' },
+      { type: 'output', content: ':: Starting cron daemon... [OK]' },
       { type: 'output', content: ':: Starting sshd... [OK]' },
-      { type: 'output', content: '' },
-      { type: 'prompt', content: 'Arch Linux 6.8.1-arch1-1 (tty1)' },
       { type: 'output', content: '' },
       { type: 'prompt', content: 'archiso login: ' },
       { type: 'command', content: 'root' },
@@ -518,7 +611,10 @@
       const lineDiv = document.createElement('div');
       lineDiv.className = 'line';
       
-      if (type === 'prompt') {
+      if (type === 'ascii') {
+        lineDiv.className = 'ascii-art';
+        lineDiv.textContent = content;
+      } else if (type === 'prompt') {
         lineDiv.innerHTML = `<span class="prompt">${content}</span><span class="cursor"></span>`;
       } else if (type === 'command') {
         lineDiv.innerHTML = `<span class="prompt">[root@archiso ~]# </span><span class="command">${content}</span>`;
@@ -544,12 +640,12 @@
       }
     }
 
-    // Mostrar grid de certificaciones (con logos)
+    // Mostrar grid de certificaciones
     function showCertificationsGrid() {
       addLine('output', '');
-      addLine('output', '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+      addLine('output', '═══════════════════════════════════════════════════════════════════');
       addLine('output', '  CERTIFICATION STATUS REPORT — IN PROGRESS');
-      addLine('output', '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+      addLine('output', '═══════════════════════════════════════════════════════════════════');
       addLine('output', '');
       
       const gridDiv = document.createElement('div');
@@ -569,7 +665,7 @@
         card.onclick = () => showCertDetails(cert.key);
         card.innerHTML = `
           <div class="cert-logo">
-            <img src="${cert.logo}" alt="${cert.name} logo" onerror="this.src='https://placehold.co/70x70/0f172a/38bdf8?text=${cert.name}'">
+            <img src="${cert.logo}" alt="${cert.name} logo" onerror="this.style.display='none';this.parentElement.innerHTML='<div style=\\'font-size:1.5rem;color:#38bdf8;\\'>${cert.name.charAt(0)}</div>'">
           </div>
           <div class="cert-name">${cert.name}</div>
           <span class="cert-status">In Progress</span>
@@ -585,9 +681,9 @@
       terminalBody.scrollTop = terminalBody.scrollHeight;
       
       addLine('output', '');
-      addLine('output', '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
-      addLine('output', '  Select a certification above to view detailed CLI output');
-      addLine('output', '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+      addLine('output', '═══════════════════════════════════════════════════════════════════');
+      addLine('output', '  Select a certification above to view detailed information');
+      addLine('output', '═══════════════════════════════════════════════════════════════════');
       addLine('output', '');
       addLine('prompt', '[root@archiso ~]# ');
       addLine('command', './cert_display --waiting-selection');
@@ -596,57 +692,67 @@
       addLine('prompt', '[root@archiso ~]# ');
     }
 
-    // Mostrar detalles de certificación como salida CLI
+    // Mostrar detalles de certificación con formato mejorado
     function showCertDetails(certKey) {
       const cert = certsData[certKey];
       if (!cert) return;
       
-      // Limpiar desde el último prompt (opcional, pero mejor mantener historial)
-      // En lugar de limpiar, añadimos al final
-      
       addLine('output', '');
-      addLine('output', '┌─────────────────────────────────────────────────────────────────┐');
-      addLine('output', `│  CERTIFICATION DETAILS: ${cert.name.padEnd(40)}│`);
-      addLine('output', '├─────────────────────────────────────────────────────────────────┤');
-      addLine('output', `│  Vendor:      ${cert.vendor.padEnd(45)}│`);
-      addLine('output', `│  Complexity:  ${cert.complexity.padEnd(45)}│`);
-      addLine('output', `│  Progress:    ${cert.progress}% (estimated completion: ${cert.estimated})${' '.padEnd(45 - (cert.progress.toString().length + cert.estimated.length + 17), ' ')}│`);
-      addLine('output', '├─────────────────────────────────────────────────────────────────┤');
-      addLine('output', '│  TECHNOLOGIES / TOOLS                                         │');
-      addLine('output', '├─────────────────────────────────────────────────────────────────┤');
       
-      // Tecnologías en múltiples líneas
-      const techsPerLine = 3;
-      for (let i = 0; i < cert.technologies.length; i += techsPerLine) {
-        const techLine = cert.technologies.slice(i, i + techsPerLine).join('  ·  ');
-        addLine('output', `│    ${techLine.padEnd(63)}│`);
-      }
+      // Caja de detalles mejorada
+      const detailBox = document.createElement('div');
+      detailBox.className = 'cert-detail-box';
       
-      addLine('output', '├─────────────────────────────────────────────────────────────────┤');
-      addLine('output', '│  KNOWLEDGE AREAS                                              │');
-      addLine('output', '├─────────────────────────────────────────────────────────────────┤');
+      detailBox.innerHTML = `
+        <div class="cert-detail-header">
+          <h3>📄 ${cert.name} — Certification Details</h3>
+        </div>
+        <div class="cert-detail-section">
+          <div class="section-label">BASIC INFORMATION</div>
+          <div style="display: flex; justify-content: space-between; flex-wrap: wrap;">
+            <span style="color:#9aa9c1;">Vendor:</span>
+            <span style="color:#eef2ff;">${cert.vendor}</span>
+          </div>
+          <div style="display: flex; justify-content: space-between; flex-wrap: wrap; margin-top: 0.3rem;">
+            <span style="color:#9aa9c1;">Complexity:</span>
+            <span style="color: ${cert.color};">${cert.complexity}</span>
+          </div>
+          <div style="display: flex; justify-content: space-between; flex-wrap: wrap; margin-top: 0.3rem;">
+            <span style="color:#9aa9c1;">Progress:</span>
+            <span style="color: #facc15;">${cert.progress}% (estimated: ${cert.estimated})</span>
+          </div>
+          <div class="cert-progress" style="margin-top: 0.8rem;">
+            <div class="cert-progress-bar" style="width: ${cert.progress}%"></div>
+          </div>
+        </div>
+        <div class="cert-detail-section">
+          <div class="section-label">TECHNOLOGIES / TOOLS</div>
+          <div>
+            ${cert.technologies.map(tech => `<span class="tech-tag">${tech}</span>`).join('')}
+          </div>
+        </div>
+        <div class="cert-detail-section">
+          <div class="section-label">KNOWLEDGE AREAS</div>
+          ${cert.knowledge.map(k => `<div class="knowledge-item">${k}</div>`).join('')}
+        </div>
+      `;
       
-      cert.knowledge.forEach(knowledge => {
-        addLine('output', `│    - ${knowledge.padEnd(61)}│`);
-      });
+      terminalBody.appendChild(detailBox);
+      terminalBody.scrollTop = terminalBody.scrollHeight;
       
-      addLine('output', '└─────────────────────────────────────────────────────────────────┘');
-      addLine('output', '');
-      addLine('output', `$ echo "Certificate: ${cert.name} — Complexity: ${cert.complexity} — Progress: ${cert.progress}%"`);
-      addLine('output', `Certificate: ${cert.name} — Complexity: ${cert.complexity} — Progress: ${cert.progress}%`);
       addLine('output', '');
       addLine('prompt', '[root@archiso ~]# ');
-      addLine('command', `cat /certifications/${certKey}/details.log`);
-      addLine('output', `[INFO] Full details for ${cert.name} displayed above.`);
+      addLine('command', `cat /certifications/${certKey}/full_details.log`);
+      addLine('output', `[INFO] Full specification for ${cert.name} loaded successfully.`);
       addLine('prompt', '[root@archiso ~]# ');
       
-      // Añadir enlace de vuelta al final si es necesario
+      // Añadir enlace de vuelta
       const existingBackLink = document.querySelector('.back-link');
       if (!existingBackLink) {
         const backLink = document.createElement('a');
         backLink.href = 'index.html';
         backLink.className = 'back-link';
-        backLink.innerHTML = '<- Back to portfolio';
+        backLink.innerHTML = '← Back to portfolio';
         terminalBody.appendChild(backLink);
       }
       
@@ -657,9 +763,12 @@
       for (let i = 0; i < bootLines.length; i++) {
         const line = bootLines[i];
         
-        if (line.type === 'prompt') {
+        if (line.type === 'ascii') {
+          addLine('ascii', line.content);
+          await new Promise(resolve => setTimeout(resolve, 300));
+        } else if (line.type === 'prompt') {
           addLine('prompt', line.content);
-          await new Promise(resolve => setTimeout(resolve, 120));
+          await new Promise(resolve => setTimeout(resolve, 100));
         } else if (line.type === 'command') {
           const lineElement = addLine('command', '');
           const commandSpan = lineElement.querySelector('.command');
@@ -669,7 +778,7 @@
           await new Promise(resolve => setTimeout(resolve, 200));
         } else {
           addLine('output', line.content);
-          await new Promise(resolve => setTimeout(resolve, 35));
+          await new Promise(resolve => setTimeout(resolve, 30));
         }
       }
       
