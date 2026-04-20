@@ -125,11 +125,55 @@
       width: 12px;
       height: 12px;
       border-radius: 50%;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+
+    .window-control:hover {
+      opacity: 0.8;
     }
 
     .close { background: #ff5f56; }
     .minimize { background: #ffbd2e; }
     .maximize { background: #27c93f; }
+
+    .exit-btn {
+      background: rgba(255, 95, 86, 0.2);
+      border: 1px solid #ff5f56;
+      color: #ff5f56;
+      padding: 0.2rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.7rem;
+      font-family: 'JetBrains Mono', monospace;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      margin-left: auto;
+    }
+
+    .exit-btn:hover {
+      background: #ff5f56;
+      color: #0a0c10;
+      transform: scale(1.02);
+    }
+
+    .clear-btn {
+      background: rgba(56, 189, 248, 0.2);
+      border: 1px solid #38bdf8;
+      color: #38bdf8;
+      padding: 0.2rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.7rem;
+      font-family: 'JetBrains Mono', monospace;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      margin-right: 0.5rem;
+    }
+
+    .clear-btn:hover {
+      background: #38bdf8;
+      color: #0a0c10;
+      transform: scale(1.02);
+    }
 
     .terminal-title {
       color: #6c7a92;
@@ -181,7 +225,6 @@
       padding-left: 1rem;
     }
 
-    /* Estilo para el pre del logo */
     .arch-logo-pre {
       color: #38bdf8;
       background: transparent;
@@ -322,15 +365,17 @@
       letter-spacing: 1px;
     }
 
+    /* TAGS DE TECNOLOGÍA EN COLOR BLANCO */
     .tech-tag {
-      background: rgba(56, 189, 248, 0.1);
-      border: 1px solid rgba(56, 189, 248, 0.3);
-      padding: 0.2rem 0.6rem;
+      background: rgba(56, 189, 248, 0.15);
+      border: 1px solid rgba(56, 189, 248, 0.4);
+      padding: 0.2rem 0.7rem;
       border-radius: 20px;
       font-size: 0.7rem;
       display: inline-block;
       margin: 0.2rem;
-      color: white;
+      color: #ffffff;
+      font-weight: 500;
     }
 
     .knowledge-item {
@@ -361,12 +406,51 @@
       color: #38bdf8;
     }
 
+    .reload-timer {
+      position: fixed;
+      bottom: 1rem;
+      right: 1rem;
+      z-index: 10;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(8px);
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.65rem;
+      color: #6c7a92;
+      font-family: monospace;
+      pointer-events: none;
+    }
+
+    /* Input de comandos */
+    .command-input-line {
+      display: flex;
+      align-items: center;
+      margin-top: 1rem;
+      margin-bottom: 0.5rem;
+    }
+    .command-input-prompt {
+      color: #38bdf8;
+      font-weight: 600;
+      margin-right: 0.5rem;
+    }
+    .command-input {
+      background: transparent;
+      border: none;
+      color: #eef2ff;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85rem;
+      flex: 1;
+      outline: none;
+    }
+
     @media (max-width: 768px) {
       .terminal-container { padding: 0.5rem; }
       .terminal-body { padding: 1rem; font-size: 0.7rem; }
       .cert-name { font-size: 1rem; }
       .cert-logo { width: 50px; height: 50px; }
       .arch-logo-pre { font-size: 0.4rem; }
+      .reload-timer { font-size: 0.5rem; bottom: 0.5rem; right: 0.5rem; }
+      .tech-tag { font-size: 0.6rem; padding: 0.15rem 0.5rem; }
     }
   </style>
 </head>
@@ -383,18 +467,46 @@
     <div class="terminal-window">
       <div class="terminal-header">
         <div class="window-controls">
-          <div class="window-control close"></div>
+          <div class="window-control close" onclick="window.location.href='index.html'"></div>
           <div class="window-control minimize"></div>
           <div class="window-control maximize"></div>
         </div>
+        <button class="clear-btn" onclick="clearTerminal()">
+          <i class="fas fa-eraser"></i> clear
+        </button>
         <div class="terminal-title">0x21@archiso ~/certifications — CLI knowledge base</div>
+        <button class="exit-btn" onclick="window.location.href='index.html'">
+          <i class="fas fa-sign-out-alt"></i> exit
+        </button>
       </div>
       
       <div class="terminal-body" id="terminalBody"></div>
     </div>
   </div>
 
+  <div class="reload-timer" id="reloadTimer">
+    Reload in: 3:30
+  </div>
+
   <script>
+    // ========== RECARGA AUTOMÁTICA CADA 3.5 MINUTOS ==========
+    let secondsLeft = 210;
+    const timerElement = document.getElementById('reloadTimer');
+
+    function updateTimer() {
+      const minutes = Math.floor(secondsLeft / 60);
+      const seconds = secondsLeft % 60;
+      timerElement.textContent = `Reload in: ${minutes}:${seconds.toString().padStart(2, '0')}`;
+      
+      if (secondsLeft <= 0) {
+        window.location.reload();
+      }
+      secondsLeft--;
+    }
+
+    updateTimer();
+    const timerInterval = setInterval(updateTimer, 1000);
+
     // ========== PARTICLES BACKGROUND ==========
     const canvas = document.getElementById('particle-canvas');
     const ctx = canvas.getContext('2d');
@@ -454,7 +566,7 @@
     initParticles();
     animateParticles();
 
-    // ========== ASCII ARCH LOGO (EL PRE QUE DISTE) ==========
+    // ========== ASCII ARCH LOGO ==========
     const archLogoText = `                   -`
                   .o+`
                  \`ooo/
@@ -516,7 +628,7 @@
       oscp: {
         name: 'OSCP',
         vendor: 'Offensive Security',
-        logo: 'oscp-logo.png',
+        logo: 'oscp-logo.jpg',
         progress: 60,
         complexity: 'Advanced',
         estimated: 'Q1 2027',
@@ -555,6 +667,7 @@
 
     // ========== TERMINAL BOOT SEQUENCE ==========
     const terminalBody = document.getElementById('terminalBody');
+    let animationCompleted = false;
     
     const bootLines = [
       { type: 'logo', content: archLogoText },
@@ -678,6 +791,9 @@
       addLine('output', '');
       addLine('output', 'System ready. Click on any certification card to display details.');
       addLine('prompt', '[root@archiso ~]# ');
+      
+      // Añadir input de comandos después de que todo esté cargado
+      addCommandInput();
     }
 
     function showCertDetails(certKey) {
@@ -752,6 +868,107 @@
       terminalBody.scrollTop = terminalBody.scrollHeight;
     }
 
+    function addCommandInput() {
+      // Eliminar input existente si lo hay
+      const existingInput = document.querySelector('.command-input-line');
+      if (existingInput) existingInput.remove();
+      
+      const inputLine = document.createElement('div');
+      inputLine.className = 'command-input-line';
+      inputLine.innerHTML = `
+        <span class="command-input-prompt">[root@archiso ~]# </span>
+        <input type="text" class="command-input" id="commandInput" placeholder="Type 'clear' to reset screen..." autofocus>
+      `;
+      terminalBody.appendChild(inputLine);
+      
+      const input = document.getElementById('commandInput');
+      input.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+          const cmd = input.value.trim().toLowerCase();
+          if (cmd === 'clear') {
+            clearTerminal();
+          } else if (cmd === 'exit') {
+            window.location.href = 'index.html';
+          } else if (cmd !== '') {
+            addLine('command', cmd);
+            addLine('output', 'Command not recognized. Available commands: clear, exit');
+          }
+          input.value = '';
+          terminalBody.scrollTop = terminalBody.scrollHeight;
+        }
+      });
+      
+      input.focus();
+    }
+
+    function clearTerminal() {
+      // Limpiar todo el contenido del terminal
+      terminalBody.innerHTML = '';
+      
+      // Mostrar el logo nuevamente
+      const logoPre = document.createElement('pre');
+      logoPre.className = 'arch-logo-pre';
+      logoPre.textContent = archLogoText;
+      terminalBody.appendChild(logoPre);
+      
+      addLine('output', '');
+      addLine('output', '[Screen cleared by user]');
+      addLine('output', '');
+      addLine('prompt', '[root@archiso ~]# ');
+      addLine('command', 'clear');
+      addLine('output', '');
+      
+      // Volver a mostrar el grid de certificaciones
+      const gridDiv = document.createElement('div');
+      gridDiv.className = 'cert-grid';
+      
+      const certList = [
+        { key: 'ccna', name: 'CCNA', progress: 45, logo: certsData.ccna.logo },
+        { key: 'ccnp', name: 'CCNP', progress: 25, logo: certsData.ccnp.logo },
+        { key: 'oscp', name: 'OSCP', progress: 60, logo: certsData.oscp.logo },
+        { key: 'security', name: 'Security+', progress: 35, logo: certsData.security.logo }
+      ];
+      
+      for (let i = 0; i < certList.length; i++) {
+        const cert = certList[i];
+        const card = document.createElement('div');
+        card.className = 'cert-card';
+        card.setAttribute('data-cert', cert.key);
+        card.onclick = (function(key) {
+          return function() { showCertDetails(key); };
+        })(cert.key);
+        card.innerHTML = `
+          <div class="cert-logo">
+            <img src="${cert.logo}" alt="${cert.name} logo" onerror="this.style.display='none';this.parentElement.innerHTML='<div style=\\'font-size:1.8rem;color:#38bdf8;\\'>${cert.name.charAt(0)}</div>'">
+          </div>
+          <div class="cert-name">${cert.name}</div>
+          <span class="cert-status">In Progress</span>
+          <div class="cert-progress">
+            <div class="cert-progress-bar" style="width: ${cert.progress}%"></div>
+          </div>
+          <div style="font-size: 0.65rem; margin-top: 0.5rem; color: #6c7a92;">${cert.progress}% complete — click to inspect</div>
+        `;
+        gridDiv.appendChild(card);
+      }
+      
+      terminalBody.appendChild(gridDiv);
+      terminalBody.scrollTop = terminalBody.scrollHeight;
+      
+      addLine('output', '');
+      addLine('output', '=====================================================================');
+      addLine('output', '  Select a certification above to view detailed information');
+      addLine('output', '=====================================================================');
+      addLine('output', '');
+      addLine('prompt', '[root@archiso ~]# ');
+      addLine('command', './cert_display --ready');
+      addLine('output', '');
+      addLine('output', 'System ready. Click on any certification card to display details.');
+      addLine('prompt', '[root@archiso ~]# ');
+      
+      // Re-add command input
+      addCommandInput();
+    }
+
     async function animateTerminal() {
       for (let i = 0; i < bootLines.length; i++) {
         const line = bootLines[i];
@@ -777,6 +994,7 @@
       
       await new Promise(resolve => setTimeout(resolve, 500));
       showCertificationsGrid();
+      animationCompleted = true;
     }
 
     window.addEventListener('load', function() {
