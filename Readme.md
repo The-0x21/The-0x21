@@ -1,6 +1,6 @@
 <h1 align="center">0x21</h1>
 
-<h3 align="center">Aspiring Cybersecurity and Network Engineer</h3>
+
 
 ---
 
@@ -44,7 +44,8 @@ Continuously learning through real-world experimentation, problem solving, and t
 ![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
 ![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white)
 
-- Linux (daily use, terminal workflows, system administration basics)
+- Arch Linux (Hyprland) as primary environment
+- Linux (terminal workflows, system administration basics)
 - Docker (containerization fundamentals)
 - Git (version control and collaboration)
 
