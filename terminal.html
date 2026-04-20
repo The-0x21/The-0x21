@@ -181,14 +181,17 @@
       padding-left: 1rem;
     }
 
-    .arch-logo {
+    /* Estilo para el pre del logo */
+    .arch-logo-pre {
       color: #38bdf8;
-      line-height: 1.2;
-      margin: 1rem 0;
-      text-align: center;
-      white-space: pre;
-      font-size: 0.65rem;
+      background: transparent;
+      border: none;
       font-family: monospace;
+      font-size: 0.6rem;
+      text-align: center;
+      margin: 0 auto;
+      display: block;
+      line-height: 1.2;
     }
 
     .cursor {
@@ -362,7 +365,7 @@
       .terminal-body { padding: 1rem; font-size: 0.7rem; }
       .cert-name { font-size: 1rem; }
       .cert-logo { width: 50px; height: 50px; }
-      .arch-logo { font-size: 0.45rem; }
+      .arch-logo-pre { font-size: 0.4rem; }
     }
   </style>
 </head>
@@ -450,29 +453,26 @@
     initParticles();
     animateParticles();
 
-    // ========== ASCII ARCH LOGO (VERSIÓN SIMPLE Y SEGURA) ==========
-    const archAscii = `
-+------------------------------------------------------------------+
-|                                                                  |
-|      ████████████████████████████████████████████████████        |
-|      ████████████████████████████████████████████████████        |
-|      ████ ████ ██████████████████████████████████████████        |
-|      ████ ████ ████ ████                       ████ ████         |
-|      ████ ████ ████ ████   ████   ████ ██████   ████ ████         |
-|      ████ ████ ████ ████   ████   ████ ██████   ████ ████         |
-|      ████ ████ ████ ████   ████   ████ ██████   ████ ████         |
-|      ████ ████ ████ ████                       ████ ████         |
-|      ████ ████ ████ ████   ████████████████   ████ ████         |
-|      ████ ████ ████ ████   ████████████████   ████ ████         |
-|      ████ ████ ████ ████                       ████ ████         |
-|      ████ ████ ██████████████████████████████████████████        |
-|      ████████████████████████████████████████████████████        |
-|                                                                  |
-|                         Arch Linux                               |
-|                  The Arch Way — Keep It Simple                   |
-|                                                                  |
-+------------------------------------------------------------------+
-    `;
+    // ========== ASCII ARCH LOGO (EL PRE QUE DISTE) ==========
+    const archLogoText = `                   -`
+                  .o+`
+                 \`ooo/
+                \`+oooo:
+               \`+oooooo:
+               -+oooooo+:
+             \`/:-:++oooo+:
+            \`/++++/+++++++:
+           \`/++++++++++++++:
+          \`/+++ooooooooooooo/\`
+         ./ooosssso++osssssso+\`
+        .oossssso-\`\`\`\`/ossssss+\`
+       -osssssso.      :ssssssso.
+      :osssssss/        osssso+++.
+     /ossssssss/        +ssssooo/-
+   \`/ossssso+/:-        -:/+osssso+-
+  \`+sso+:-\`                 \`.-/+oso:
+ \`++:.                           \`-/+/
+ .\`                                 \`/`;
 
     // ========== CERTIFICATION DATA ==========
     const certsData = {
@@ -515,7 +515,7 @@
       oscp: {
         name: 'OSCP',
         vendor: 'Offensive Security',
-        logo: 'oscp-logo.jpg',
+        logo: 'oscp-logo.png',
         progress: 60,
         complexity: 'Advanced',
         estimated: 'Q1 2027',
@@ -556,7 +556,7 @@
     const terminalBody = document.getElementById('terminalBody');
     
     const bootLines = [
-      { type: 'ascii', content: archAscii },
+      { type: 'logo', content: archLogoText },
       { type: 'output', content: '' },
       { type: 'output', content: ':: Arch Linux 6.8.1-arch1-1 (tty1)' },
       { type: 'output', content: ':: Starting system initialization...' },
@@ -595,9 +595,11 @@
       const lineDiv = document.createElement('div');
       lineDiv.className = 'line';
       
-      if (type === 'ascii') {
-        lineDiv.className = 'arch-logo';
-        lineDiv.textContent = content;
+      if (type === 'logo') {
+        const pre = document.createElement('pre');
+        pre.className = 'arch-logo-pre';
+        pre.textContent = content;
+        lineDiv.appendChild(pre);
       } else if (type === 'prompt') {
         lineDiv.innerHTML = '<span class="prompt">' + content + '</span><span class="cursor"></span>';
       } else if (type === 'command') {
@@ -753,9 +755,9 @@
       for (let i = 0; i < bootLines.length; i++) {
         const line = bootLines[i];
         
-        if (line.type === 'ascii') {
-          addLine('ascii', line.content);
-          await new Promise(resolve => setTimeout(resolve, 100));
+        if (line.type === 'logo') {
+          addLine('logo', line.content);
+          await new Promise(resolve => setTimeout(resolve, 200));
         } else if (line.type === 'prompt') {
           addLine('prompt', line.content);
           await new Promise(resolve => setTimeout(resolve, 60));
