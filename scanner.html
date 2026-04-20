@@ -1,4 +1,3 @@
-
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@400;600&display=swap');
 *{box-sizing:border-box;margin:0;padding:0;}
@@ -66,13 +65,13 @@ pre .w{color:#ccc;}
 <div class="root">
 
   <div class="hdr">
-    <div class="ascii-wrap"><span class="ascii"> 
-  ████████╗██╗  ██╗██████╗ ███████╗ █████╗ ████████╗
-  ╚══██╔══╝██║  ██║██╔══██╗██╔════╝██╔══██╗╚══██╔══╝
-     ██║   ███████║██████╔╝█████╗  ███████║   ██║
-     ██║   ██╔══██║██╔══██╗██╔══╝  ██╔══██║   ██║
-     ██║   ██║  ██║██║  ██║███████╗██║  ██║   ██║
-     ╚═╝   ╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝   ╚═╝
+    <div class="ascii-wrap">
+      <span class="ascii">  ███████╗██╗  ██╗██████╗ ████████╗███████╗ █████╗ ████████╗██╗  ██╗ █████╗ ███████╗██╗  ██╗███████╗██████╗
+  ╚══██╔══╝██║  ██║██╔══██╗╚══██╔══╝██╔════╝██╔══██╗╚══██╔══╝██║  ██║██╔══██╗██╔════╝██║  ██║██╔════╝██╔══██╗
+     ██║   ███████║██████╔╝   ██║   █████╗  ███████║   ██║   ███████║███████║███████╗███████║█████╗  ██║  ██║
+     ██║   ██╔══██║██╔══██╗   ██║   ██╔══╝  ██╔══██║   ██║   ██╔══██║██╔══██║╚════██║██╔══██║██╔══╝  ██║  ██║
+     ██║   ██║  ██║██║  ██║   ██║   ███████╗██║  ██║   ██║   ██║  ██║██║  ██║███████║██║  ██║███████╗██████╔╝
+     ╚═╝   ╚═╝  ╚═╝╚═╝  ╚═╝   ╚═╝   ╚══════╝╚═╝  ╚═╝   ╚═╝   ╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝╚══════╝╚═════╝
   ██╗  ██╗ █████╗ ███████╗██╗  ██╗███████╗██████╗
   ██║  ██║██╔══██╗██╔════╝██║  ██║██╔════╝██╔══██╗
   ███████║███████║███████╗███████║█████╗  ██████╔╝
@@ -93,25 +92,25 @@ pre .w{color:#ccc;}
     </div>
   </div>
 
-  <div class="lbl">// DESCRIPCION</div>
+  <div class="lbl">// DESCRIPTION</div>
   <div class="desc">
-    ThreatHasher es una herramienta de reconocimiento ofensivo de linea de comandos disenada para<br>
-    automatizar la fase de recon en auditorias de seguridad. Integra Nmap y la API de Shodan en<br>
-    un unico flujo interactivo para descubrir puertos, identificar servicios, detectar CVEs y<br>
-    exportar resultados en multiples formatos para su inclusion en informes.
+    ThreatHasher is an offensive reconnaissance command-line tool designed to<br>
+    automate the recon phase in security audits. It integrates Nmap and the Shodan API into<br>
+    a single interactive workflow to discover ports, identify services, detect CVEs, and<br>
+    export results in multiple formats for inclusion in reports.
   </div>
 
   <div class="hr"></div>
-  <div class="lbl">// MODULOS</div>
+  <div class="lbl">// MODULES</div>
   <div class="mgrid">
-    <div class="mc"><div class="mn">[01]</div><div class="mt">NMAP SCAN</div><div class="md">6 perfiles. Deteccion de OS, versiones y scripts NSE vuln.</div></div>
-    <div class="mc"><div class="mn">[02]</div><div class="mt">SHODAN</div><div class="md">Lookup de IP, query search con filtros, CVEs con CVSS.</div></div>
-    <div class="mc"><div class="mn">[03]</div><div class="mt">DNS & PING</div><div class="md">DNS forward/reverse, ping sweep de subredes, nslookup.</div></div>
-    <div class="mc"><div class="mn">[04]</div><div class="mt">EXPORT</div><div class="md">JSON completo, CSV de CVEs, reporte TXT para informes.</div></div>
+    <div class="mc"><div class="mn">[01]</div><div class="mt">NMAP SCAN</div><div class="md">6 profiles. OS detection, versioning and NSE vuln scripts.</div></div>
+    <div class="mc"><div class="mn">[02]</div><div class="mt">SHODAN</div><div class="md">IP lookup, query search with filters, CVEs with CVSS.</div></div>
+    <div class="mc"><div class="mn">[03]</div><div class="mt">DNS & PING</div><div class="md">Forward/reverse DNS, subnet ping sweep, nslookup.</div></div>
+    <div class="mc"><div class="mn">[04]</div><div class="mt">EXPORT</div><div class="md">Complete JSON, CSV of CVEs, TXT report for documentation.</div></div>
   </div>
 
   <div class="hr"></div>
-  <div class="lbl">// STACK TECNICO</div>
+  <div class="lbl">// TECH STACK</div>
   <div class="stack">
     <div class="si"><div class="dot"></div>Python 3.8+</div>
     <div class="si"><div class="dot"></div>python-nmap</div>
@@ -122,53 +121,57 @@ pre .w{color:#ccc;}
   </div>
 
   <div class="hr"></div>
-  <div class="lbl">// REQUISITOS</div>
+  <div class="lbl">// REQUIREMENTS</div>
   <div class="tbl-wrap">
     <table>
       <colgroup><col style="width:22%"><col style="width:18%"><col style="width:60%"></colgroup>
-      <tr><th>COMPONENTE</th><th>VERSION</th><th>NOTAS</th></tr>
-      <tr><td>Python</td><td>3.8+</td><td class="dim">Requerido</td></tr>
-      <tr><td>Nmap</td><td>7.x</td><td class="dim">Instalado en el sistema operativo</td></tr>
-      <tr><td>python-nmap</td><td>ultima</td><td class="dim">pip install python-nmap</td></tr>
-      <tr><td>shodan</td><td>ultima</td><td class="dim">pip install shodan</td></tr>
-      <tr><td>Shodan API Key</td><td>—</td><td class="dim">account.shodan.io (gratuita)</td></tr>
+      <thead><tr><th>COMPONENT</th><th>VERSION</th><th>NOTES</th></tr></thead>
+      <tbody>
+        <tr><td>Python</td><td>3.8+</td><td class="dim">Required</td></tr>
+        <tr><td>Nmap</td><td>7.x</td><td class="dim">Installed on the operating system</td></tr>
+        <tr><td>python-nmap</td><td>latest</td><td class="dim">pip install python-nmap</td></tr>
+        <tr><td>shodan</td><td>latest</td><td class="dim">pip install shodan</td></tr>
+        <tr><td>Shodan API Key</td><td>—</td><td class="dim">account.shodan.io (free tier)</td></tr>
+      </tbody>
     </table>
   </div>
 
   <div class="hr"></div>
-  <div class="lbl">// INSTALACION</div>
+  <div class="lbl">// INSTALLATION</div>
   <div class="inst-grid">
     <div class="ic"><div class="ios">DEBIAN / UBUNTU</div><div class="icode">sudo apt install nmap<br>sudo apt install python3 python3-pip<br>pip install python-nmap shodan</div></div>
     <div class="ic"><div class="ios">ARCH LINUX</div><div class="icode">sudo pacman -S nmap<br>sudo pacman -S python python-pip<br>pip install python-nmap shodan</div></div>
     <div class="ic"><div class="ios">MACOS</div><div class="icode">brew install nmap<br>pip install python-nmap shodan</div></div>
   </div>
-<pre><span class="r">#</span> Configurar API Key
-export SHODAN_API_KEY=<span class="g">"tu_api_key_aqui"</span>
+<pre><span class="r">#</span> Configure API Key
+export SHODAN_API_KEY=<span class="g">"your_api_key_here"</span>
 
-<span class="r">#</span> Ejecutar
+<span class="r">#</span> Run
 python3 threathsher.py</pre>
 
   <div class="hr"></div>
-  <div class="lbl">// PERFILES NMAP</div>
+  <div class="lbl">// NMAP PROFILES</div>
   <div class="tbl-wrap">
     <table>
       <colgroup><col style="width:22%"><col style="width:16%"><col style="width:32%"><col style="width:30%"></colgroup>
-      <tr><th>PERFIL</th><th>PUERTOS</th><th>ARGUMENTOS</th><th>USO</th></tr>
-      <tr><td>Rapido</td><td class="dim">Top 100</td><td class="dim">-T4 -F</td><td class="dim">Reconocimiento inicial rapido</td></tr>
-      <tr><td>Estandar</td><td class="dim">1-1024</td><td class="dim">-sV -O -T4</td><td class="dim">Version y OS</td></tr>
-      <tr><td>Completo</td><td class="dim">1-65535</td><td class="dim">-sV -T4</td><td class="dim">Escaneo exhaustivo</td></tr>
-      <tr><td>Vulnerabilidades</td><td class="dim">1-1024</td><td class="dim">-sV -O --script vuln</td><td class="dim">Deteccion de CVEs via NSE</td></tr>
-      <tr><td>Stealth SYN</td><td class="dim">1-1024</td><td class="dim">-sS -T2 -O</td><td class="dim">Sigiloso, requiere root</td></tr>
-      <tr><td>Personalizado</td><td class="dim">definido</td><td class="dim">definidos</td><td class="dim">Argumentos manuales</td></tr>
+      <thead><tr><th>PROFILE</th><th>PORTS</th><th>ARGUMENTS</th><th>USE CASE</th></tr></thead>
+      <tbody>
+        <tr><td>Quick</td><td class="dim">Top 100</td><td class="dim">-T4 -F</td><td class="dim">Fast initial reconnaissance</td></tr>
+        <tr><td>Standard</td><td class="dim">1-1024</td><td class="dim">-sV -O -T4</td><td class="dim">Version and OS</td></tr>
+        <tr><td>Full</td><td class="dim">1-65535</td><td class="dim">-sV -T4</td><td class="dim">Exhaustive scan</td></tr>
+        <tr><td>Vulnerabilities</td><td class="dim">1-1024</td><td class="dim">-sV -O --script vuln</td><td class="dim">CVE detection via NSE</td></tr>
+        <tr><td>Stealth SYN</td><td class="dim">1-1024</td><td class="dim">-sS -T2 -O</td><td class="dim">Stealthy, requires root</td></tr>
+        <tr><td>Custom</td><td class="dim">user defined</td><td class="dim">user defined</td><td class="dim">Manual arguments</td></tr>
+      </tbody>
     </table>
   </div>
 
   <div class="hr"></div>
-  <div class="lbl">// SALIDA EN TERMINAL</div>
+  <div class="lbl">// TERMINAL OUTPUT</div>
 <pre><span class="r">ThreatHasher ></span> 1
 
   <span class="dim">[INFO]   Target  : </span><span class="w">192.168.1.1</span>
-  <span class="dim">[INFO]   Puertos : 1-1024</span>
+  <span class="dim">[INFO]   Ports   : 1-1024</span>
   <span class="dim">[INFO]   Args    : -sV -O --script vuln</span>
   ----------------------------------------------------------------
   <span class="g">[HOST]</span>  <span class="w">192.168.1.1</span>  (router.local)  [UP]
@@ -179,26 +182,26 @@ python3 threathsher.py</pre>
   <span class="r">[VULN]</span>   http-vuln-cve2017-5638
            Apache Struts 2 RCE vulnerability...
   ----------------------------------------------------------------
-  <span class="g">[OK]</span>     Escaneo finalizado. 1 host(s) procesados.</pre>
+  <span class="g">[OK]</span>     Scan finished. 1 host(s) processed.</pre>
 
   <div class="hr"></div>
-  <div class="lbl">// FLUJO DE USO RECOMENDADO</div>
+  <div class="lbl">// RECOMMENDED WORKFLOW</div>
   <div class="flow">
-    <div class="fstep"><div class="fnum">[01]</div><div class="ftxt">Configurar Shodan API Key en [5]</div></div>
-    <div class="fstep"><div class="fnum">[02]</div><div class="ftxt">Nmap rapido, identificar puertos</div></div>
-    <div class="fstep"><div class="fnum">[03]</div><div class="ftxt">Nmap vuln en hosts clave</div></div>
-    <div class="fstep"><div class="fnum">[04]</div><div class="ftxt">Shodan lookup CVEs historicos</div></div>
-    <div class="fstep"><div class="fnum">[05]</div><div class="ftxt">DNS para ampliar perimetro</div></div>
-    <div class="fstep"><div class="fnum">[06]</div><div class="ftxt">Exportar JSON + CSV + TXT</div></div>
+    <div class="fstep"><div class="fnum">[01]</div><div class="ftxt">Configure Shodan API Key in [5]</div></div>
+    <div class="fstep"><div class="fnum">[02]</div><div class="ftxt">Quick Nmap scan, identify ports</div></div>
+    <div class="fstep"><div class="fnum">[03]</div><div class="ftxt">Nmap vuln scan on key hosts</div></div>
+    <div class="fstep"><div class="fnum">[04]</div><div class="ftxt">Shodan lookup for historical CVEs</div></div>
+    <div class="fstep"><div class="fnum">[05]</div><div class="ftxt">DNS to expand perimeter</div></div>
+    <div class="fstep"><div class="fnum">[06]</div><div class="ftxt">Export JSON + CSV + TXT</div></div>
   </div>
 
   <div class="hr"></div>
-  <div class="lbl">// AVISO LEGAL</div>
+  <div class="lbl">// LEGAL NOTICE</div>
   <div class="warn">
-    <div class="warn-lbl">ADVERTENCIA</div>
-    Esta herramienta es exclusivamente para uso etico y autorizado.<br>
-    Escanea unicamente sistemas sobre los que dispones de permiso explicito por escrito.<br>
-    El uso no autorizado puede ser constitutivo de delito segun la legislacion vigente.
+    <div class="warn-lbl">WARNING</div>
+    This tool is exclusively for ethical and authorized use.<br>
+    Scan only systems for which you have explicit written permission.<br>
+    Unauthorized use may constitute a crime under applicable laws.
   </div>
 
   <div class="footer">
