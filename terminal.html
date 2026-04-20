@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-  <title>0x21 · Arch Terminal · Certifications</title>
+  <title>0x21 · Arch Terminal · Certifications Dashboard</title>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <style>
@@ -22,7 +22,7 @@
       position: relative;
     }
 
-    /* Fondo dinámico con gradientes */
+    /* Fondo dinámico */
     .bg-gradient {
       position: fixed;
       top: 0;
@@ -83,7 +83,7 @@
       pointer-events: none;
     }
 
-    /* Contenedor terminal */
+    /* Contenedor terminal - MÁS GRANDE */
     .terminal-container {
       position: relative;
       z-index: 2;
@@ -92,24 +92,24 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 2rem;
+      padding: 1rem;
     }
 
     .terminal-window {
-      width: 100%;
-      max-width: 900px;
-      height: auto;
-      max-height: 85vh;
-      background: rgba(5, 8, 14, 0.92);
+      width: 95%;
+      max-width: 1400px;
+      height: 92vh;
+      background: rgba(5, 8, 14, 0.94);
       backdrop-filter: blur(16px);
       border-radius: 1.5rem;
       border: 1px solid rgba(56, 189, 248, 0.4);
       box-shadow: 0 25px 45px -12px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(56, 189, 248, 0.1);
       overflow: hidden;
-      transition: all 0.3s ease;
+      display: flex;
+      flex-direction: column;
     }
 
-    /* Terminal header (barra estilo terminal) */
+    /* Terminal header */
     .terminal-header {
       background: rgba(12, 16, 24, 0.9);
       padding: 0.8rem 1.2rem;
@@ -117,6 +117,7 @@
       display: flex;
       align-items: center;
       gap: 0.8rem;
+      flex-shrink: 0;
     }
 
     .window-controls {
@@ -142,11 +143,44 @@
       letter-spacing: 0.5px;
     }
 
+    /* Tabs */
+    .tabs-container {
+      background: rgba(8, 12, 18, 0.95);
+      border-bottom: 1px solid rgba(56, 189, 248, 0.2);
+      display: flex;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem 0;
+      flex-shrink: 0;
+    }
+
+    .tab-btn {
+      background: transparent;
+      border: none;
+      color: #8a9bb5;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      padding: 0.6rem 1.2rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      border-bottom: 2px solid transparent;
+      border-radius: 8px 8px 0 0;
+    }
+
+    .tab-btn:hover {
+      color: #38bdf8;
+      background: rgba(56, 189, 248, 0.1);
+    }
+
+    .tab-btn.active {
+      color: #38bdf8;
+      border-bottom-color: #38bdf8;
+      background: rgba(56, 189, 248, 0.05);
+    }
+
     /* Cuerpo de la terminal con scroll */
     .terminal-body {
       padding: 1.5rem;
-      min-height: 500px;
-      max-height: 65vh;
+      flex: 1;
       overflow-y: auto;
       font-size: 0.85rem;
       line-height: 1.6;
@@ -154,7 +188,7 @@
     }
 
     .terminal-body::-webkit-scrollbar {
-      width: 6px;
+      width: 8px;
     }
     .terminal-body::-webkit-scrollbar-track {
       background: #0f1219;
@@ -169,7 +203,6 @@
       margin-bottom: 0.5rem;
       white-space: pre-wrap;
       word-break: break-word;
-      font-family: 'JetBrains Mono', monospace;
     }
 
     .prompt {
@@ -205,31 +238,32 @@
       50% { opacity: 0; }
     }
 
-    /* Certifications cards */
+    /* Certifications grid */
     .cert-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1rem;
-      margin-top: 1rem;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.2rem;
+      margin: 1rem 0;
     }
 
     .cert-card {
       background: rgba(8, 12, 18, 0.8);
       border: 1px solid rgba(56, 189, 248, 0.3);
       border-radius: 1rem;
-      padding: 1rem;
+      padding: 1.2rem;
       text-align: center;
       transition: all 0.3s ease;
+      cursor: pointer;
     }
 
     .cert-card:hover {
       transform: translateY(-3px);
       border-color: #38bdf8;
-      box-shadow: 0 0 15px rgba(56, 189, 248, 0.2);
+      box-shadow: 0 0 20px rgba(56, 189, 248, 0.2);
     }
 
     .cert-name {
-      font-size: 1.1rem;
+      font-size: 1.2rem;
       font-weight: 700;
       color: #38bdf8;
       margin-bottom: 0.5rem;
@@ -260,6 +294,88 @@
       transition: width 1s ease;
     }
 
+    /* Tab content - conocimientos por certificación */
+    .tab-content {
+      display: none;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .knowledge-section {
+      margin-bottom: 2rem;
+    }
+
+    .knowledge-title {
+      font-size: 1rem;
+      color: #38bdf8;
+      margin-bottom: 0.8rem;
+      border-left: 3px solid #38bdf8;
+      padding-left: 0.8rem;
+    }
+
+    .complexity-badge {
+      display: inline-block;
+      padding: 0.2rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .complexity-junior { background: rgba(34, 197, 94, 0.2); color: #4ade80; border: 1px solid #4ade80; }
+    .complexity-intermediate { background: rgba(56, 189, 248, 0.2); color: #38bdf8; border: 1px solid #38bdf8; }
+    .complexity-advanced { background: rgba(168, 85, 247, 0.2); color: #c084fc; border: 1px solid #c084fc; }
+    .complexity-expert { background: rgba(244, 114, 182, 0.2); color: #f472b6; border: 1px solid #f472b6; }
+
+    .tech-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin: 1rem 0;
+    }
+
+    .tech-tag {
+      background: rgba(56, 189, 248, 0.1);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.7rem;
+      transition: all 0.2s;
+    }
+
+    .tech-tag:hover {
+      background: rgba(56, 189, 248, 0.2);
+      transform: scale(1.05);
+    }
+
+    .knowledge-list {
+      list-style: none;
+      padding-left: 1rem;
+    }
+
+    .knowledge-list li {
+      margin-bottom: 0.5rem;
+      color: #9aa9c1;
+      font-size: 0.8rem;
+      position: relative;
+      padding-left: 1.2rem;
+    }
+
+    .knowledge-list li::before {
+      content: '▹';
+      position: absolute;
+      left: 0;
+      color: #38bdf8;
+    }
+
     .back-link {
       display: inline-block;
       margin-top: 1.5rem;
@@ -275,9 +391,10 @@
 
     /* Responsive */
     @media (max-width: 768px) {
-      .terminal-container { padding: 1rem; }
+      .terminal-container { padding: 0.5rem; }
       .terminal-body { padding: 1rem; font-size: 0.7rem; }
-      .cert-name { font-size: 0.9rem; }
+      .cert-name { font-size: 1rem; }
+      .tab-btn { padding: 0.4rem 0.8rem; font-size: 0.65rem; }
     }
   </style>
 </head>
@@ -298,10 +415,19 @@
           <div class="window-control minimize"></div>
           <div class="window-control maximize"></div>
         </div>
-        <div class="terminal-title">0x21@archiso ~/certifications</div>
+        <div class="terminal-title">0x21@archiso ~/certifications — knowledge dashboard</div>
       </div>
+      
+      <!-- Tabs para certificaciones -->
+      <div class="tabs-container" id="tabsContainer" style="display: none;">
+        <button class="tab-btn" data-tab="ccna">CCNA</button>
+        <button class="tab-btn" data-tab="ccnp">CCNP</button>
+        <button class="tab-btn" data-tab="oscp">OSCP</button>
+        <button class="tab-btn" data-tab="security">Security+</button>
+      </div>
+      
       <div class="terminal-body" id="terminalBody">
-        <!-- El contenido se generará dinámicamente con JS -->
+        <!-- El contenido se generará dinámicamente -->
       </div>
     </div>
   </div>
@@ -349,7 +475,7 @@
 
     function initParticles() {
       particles = [];
-      for (let i = 0; i < 70; i++) {
+      for (let i = 0; i < 80; i++) {
         particles.push(new Particle());
       }
     }
@@ -366,10 +492,82 @@
     initParticles();
     animateParticles();
 
+    // ========== DATOS DE CERTIFICACIONES ==========
+    const certificationsData = {
+      ccna: {
+        name: 'CCNA',
+        complexity: 'Intermediate',
+        complexityLevel: 'intermediate',
+        progress: 45,
+        technologies: ['Cisco IOS', 'Routing Protocols (OSPF, EIGRP, BGP)', 'VLANs & Trunking', 'STP', 'IPv4/IPv6', 'NAT', 'ACLs', 'Network Automation (Python)', 'Wireshark', 'SD-WAN basics'],
+        knowledge: [
+          'Network fundamentals and OSI model',
+          'Ethernet switching and VLAN configuration',
+          'IP routing and static/dynamic routing protocols',
+          'Network security fundamentals (ACLs, DHCP snooping)',
+          'WAN technologies and VPN basics',
+          'Network automation with Python and Ansible',
+          'Troubleshooting methodologies',
+          'Network device management (Cisco DNA Center)'
+        ]
+      },
+      ccnp: {
+        name: 'CCNP',
+        complexity: 'Advanced',
+        complexityLevel: 'advanced',
+        progress: 25,
+        technologies: ['Advanced OSPF/EIGRP/BGP', 'MPLS', 'VPN Technologies (DMVPN, FlexVPN)', 'QoS', 'Cisco SD-WAN', 'Python Automation (Netmiko, NAPALM)', 'RESTCONF/NETCONF', 'Cisco DNA Center', 'Multicast routing'],
+        knowledge: [
+          'Advanced routing protocols and redistribution',
+          'BGP route selection and manipulation',
+          'MPLS and L3 VPNs',
+          'Advanced switching (VXLAN, EVPN)',
+          'Network programmability and automation',
+          'Cisco SD-WAN architecture',
+          'Advanced network troubleshooting',
+          'Security integration in enterprise networks'
+        ]
+      },
+      oscp: {
+        name: 'OSCP',
+        complexity: 'Advanced',
+        complexityLevel: 'advanced',
+        progress: 60,
+        technologies: ['Kali Linux', 'Nmap', 'Metasploit', 'Burp Suite', 'Python (exploit dev)', 'Bash', 'PowerShell', 'Windows/Linux priv esc', 'SQLmap', 'Netcat', 'Wireshark', 'Social Engineering Toolkit'],
+        knowledge: [
+          'Penetration testing methodologies (PTES, OWASP)',
+          'Reconnaissance and OSINT techniques',
+          'Network scanning and enumeration',
+          'Web application security (OWASP Top 10)',
+          'Buffer overflow exploitation',
+          'Windows and Linux privilege escalation',
+          'Post-exploitation and pivoting',
+          'Report writing and documentation'
+        ]
+      },
+      security: {
+        name: 'CompTIA Security+',
+        complexity: 'Intermediate',
+        complexityLevel: 'intermediate',
+        progress: 35,
+        technologies: ['Firewalls (pfSense, iptables)', 'IDS/IPS (Snort)', 'SIEM (Splunk)', 'PKI & SSL/TLS', 'VPN (IPsec, OpenVPN)', 'Linux Security', 'Windows Security', 'Nessus', 'Wireshark', 'Metasploit basics'],
+        knowledge: [
+          'Threats, vulnerabilities, and attacks',
+          'Identity and access management (IAM)',
+          'Risk management and compliance (GDPR, HIPAA)',
+          'Cryptography and PKI',
+          'Network security architecture',
+          'Incident response and forensics',
+          'Security assessments and auditing',
+          'Cloud and virtualization security'
+        ]
+      }
+    };
+
     // ========== TERMINAL ANIMATION ==========
     const terminalBody = document.getElementById('terminalBody');
+    const tabsContainer = document.getElementById('tabsContainer');
     
-    // Líneas de la terminal (simulando boot de Arch Linux)
     const bootLines = [
       { type: 'output', content: ':: Starting Arch Linux initialization...' },
       { type: 'output', content: ':: Loading kernel modules...' },
@@ -400,10 +598,10 @@
       { type: 'command', content: 'uname -a' },
       { type: 'output', content: 'Linux archiso 6.8.1-arch1-1 #1 SMP PREEMPT_DYNAMIC x86_64 GNU/Linux' },
       { type: 'prompt', content: '[root@archiso ~]# ' },
-      { type: 'command', content: 'echo "Welcome, 0x21. Initializing certification environment..."' },
-      { type: 'output', content: 'Welcome, 0x21. Initializing certification environment...' },
+      { type: 'command', content: 'echo "Welcome, 0x21. Loading certification knowledge base..."' },
+      { type: 'output', content: 'Welcome, 0x21. Loading certification knowledge base...' },
       { type: 'prompt', content: '[root@archiso ~]# ' },
-      { type: 'command', content: './cert_check --status' }
+      { type: 'command', content: './cert_dashboard --load' }
     ];
 
     let currentLineIndex = 0;
@@ -429,7 +627,7 @@
       return lineDiv;
     }
 
-    async function typeCommand(element, text, speed = 30) {
+    async function typeCommand(element, text, speed = 25) {
       isTyping = true;
       const span = element.querySelector('.command');
       if (!span) return;
@@ -442,61 +640,38 @@
       isTyping = false;
     }
 
-    async function animateTerminal() {
-      for (let i = 0; i < bootLines.length; i++) {
-        const line = bootLines[i];
-        
-        if (line.type === 'prompt') {
-          addLine('prompt', line.content);
-          await new Promise(resolve => setTimeout(resolve, 200));
-        } else if (line.type === 'command') {
-          const lineElement = addLine('command', '');
-          const commandSpan = lineElement.querySelector('.command');
-          if (commandSpan) {
-            await typeCommand(lineElement, line.content, 20);
-          }
-          await new Promise(resolve => setTimeout(resolve, 300));
-        } else {
-          addLine('output', line.content);
-          await new Promise(resolve => setTimeout(resolve, 60));
-        }
-      }
-      
-      // Mostrar certificaciones después del boot
-      await new Promise(resolve => setTimeout(resolve, 800));
-      showCertifications();
-    }
-
+    // Función para mostrar las certificaciones y pausar
     function showCertifications() {
-      // Añadir líneas de separación
       addLine('output', '');
       addLine('output', '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
-      addLine('output', '  🎓 CERTIFICATION STATUS REPORT — IN PROGRESS');
+      addLine('output', '  📜 CERTIFICATION STATUS REPORT — IN PROGRESS');
       addLine('output', '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
       addLine('output', '');
       
       // Crear grid de certificaciones
-      const certs = [
-        { name: 'CCNA', status: 'In Progress', progress: 45, icon: 'fa-network-wired' },
-        { name: 'CCNP', status: 'In Progress', progress: 25, icon: 'fa-diagram-project' },
-        { name: 'OSCP', status: 'In Progress', progress: 60, icon: 'fa-shield-haltered' },
-        { name: 'CompTIA Security+', status: 'In Progress', progress: 35, icon: 'fa-lock' }
-      ];
-      
       const gridDiv = document.createElement('div');
       gridDiv.className = 'cert-grid';
+      
+      const certs = [
+        { name: 'CCNA', status: 'In Progress', progress: 45, key: 'ccna' },
+        { name: 'CCNP', status: 'In Progress', progress: 25, key: 'ccnp' },
+        { name: 'OSCP', status: 'In Progress', progress: 60, key: 'oscp' },
+        { name: 'CompTIA Security+', status: 'In Progress', progress: 35, key: 'security' }
+      ];
       
       certs.forEach(cert => {
         const card = document.createElement('div');
         card.className = 'cert-card';
+        card.setAttribute('data-cert', cert.key);
+        card.onclick = () => openCertTab(cert.key);
         card.innerHTML = `
-          <i class="fas ${cert.icon}" style="font-size: 1.8rem; color: #38bdf8; margin-bottom: 0.5rem; display: block;"></i>
+          <i class="fas fa-certificate" style="font-size: 1.8rem; color: #38bdf8; margin-bottom: 0.5rem; display: block;"></i>
           <div class="cert-name">${cert.name}</div>
           <span class="cert-status"><i class="fas fa-sync-alt" style="margin-right: 4px;"></i> ${cert.status}</span>
           <div class="cert-progress">
             <div class="cert-progress-bar" style="width: ${cert.progress}%"></div>
           </div>
-          <div style="font-size: 0.65rem; margin-top: 0.5rem; color: #6c7a92;">${cert.progress}% complete</div>
+          <div style="font-size: 0.65rem; margin-top: 0.5rem; color: #6c7a92;">${cert.progress}% complete — click to explore</div>
         `;
         gridDiv.appendChild(card);
       });
@@ -504,44 +679,143 @@
       terminalBody.appendChild(gridDiv);
       terminalBody.scrollTop = terminalBody.scrollHeight;
       
-      // Añadir líneas finales
+      // Mostrar pestañas después de las certificaciones
       setTimeout(() => {
         addLine('output', '');
         addLine('output', '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+        addLine('output', '  💡 Click on any certification above to view detailed knowledge base');
+        addLine('output', '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+        addLine('output', '');
         addLine('prompt', '[root@archiso ~]# ');
-        addLine('command', './cert_tracker --estimate completion');
+        addLine('command', './cert_dashboard --interactive');
+        addLine('output', '');
+        addLine('output', '✅ Dashboard loaded. Certifications are interactive — click to explore!');
+        addLine('prompt', '[root@archiso ~]# ');
         
-        setTimeout(() => {
-          addLine('output', '');
-          addLine('output', '📅 Estimated completion timeline:');
-          addLine('output', '  • CCNA: Q3 2026');
-          addLine('output', '  • Security+: Q4 2026');
-          addLine('output', '  • OSCP: Q1 2027');
-          addLine('output', '  • CCNP: Q3 2027');
-          addLine('output', '');
-          addLine('output', '✅ Certification pipeline active. Status: TRACKING');
-          addLine('prompt', '[root@archiso ~]# ');
-          addLine('command', 'echo "0x21 — constant growth, relentless pursuit."');
-          
-          setTimeout(() => {
-            addLine('output', '0x21 — constant growth, relentless pursuit.');
-            addLine('prompt', '[root@archiso ~]# ');
-            
-            // Añadir enlace de vuelta
-            const backLink = document.createElement('a');
-            backLink.href = 'index.html';
-            backLink.className = 'back-link';
-            backLink.innerHTML = '<i class="fas fa-arrow-left"></i> ← Back to portfolio';
-            terminalBody.appendChild(backLink);
-            terminalBody.scrollTop = terminalBody.scrollHeight;
-          }, 400);
-        }, 500);
+        // Mostrar el contenido por defecto de CCNA
+        openCertTab('ccna');
       }, 500);
     }
 
-    // Iniciar animación al cargar
+    // Función para abrir una pestaña de certificación
+    function openCertTab(certKey) {
+      const cert = certificationsData[certKey];
+      if (!cert) return;
+      
+      // Mostrar tabs si están ocultos
+      tabsContainer.style.display = 'flex';
+      
+      // Actualizar tabs activos
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.remove('active');
+        if (btn.getAttribute('data-tab') === certKey) {
+          btn.classList.add('active');
+        }
+      });
+      
+      // Crear o actualizar contenido
+      let tabContent = document.getElementById(`tab-${certKey}`);
+      if (!tabContent) {
+        tabContent = document.createElement('div');
+        tabContent.id = `tab-${certKey}`;
+        tabContent.className = 'tab-content';
+        terminalBody.appendChild(tabContent);
+      }
+      
+      // Ocultar todos los contenidos y mostrar el actual
+      document.querySelectorAll('.tab-content').forEach(tc => {
+        tc.classList.remove('active');
+      });
+      
+      // Generar contenido
+      const complexityClass = {
+        'junior': 'complexity-junior',
+        'intermediate': 'complexity-intermediate',
+        'advanced': 'complexity-advanced',
+        'expert': 'complexity-expert'
+      }[cert.complexityLevel] || 'complexity-intermediate';
+      
+      tabContent.innerHTML = `
+        <div class="knowledge-section">
+          <div class="knowledge-title">📋 ${cert.name} — Knowledge Base</div>
+          <span class="complexity-badge ${complexityClass}">
+            <i class="fas fa-chart-line"></i> Complexity: ${cert.complexity}
+          </span>
+          
+          <div class="knowledge-title" style="margin-top: 1rem;">🛠️ Technologies Mastered</div>
+          <div class="tech-tags">
+            ${cert.technologies.map(tech => `<span class="tech-tag">${tech}</span>`).join('')}
+          </div>
+          
+          <div class="knowledge-title" style="margin-top: 1rem;">📚 Key Knowledge Areas</div>
+          <ul class="knowledge-list">
+            ${cert.knowledge.map(item => `<li>${item}</li>`).join('')}
+          </ul>
+          
+          <div class="knowledge-title" style="margin-top: 1rem;">📊 Progress</div>
+          <div class="cert-progress" style="margin: 0.5rem 0; max-width: 300px;">
+            <div class="cert-progress-bar" style="width: ${cert.progress}%"></div>
+          </div>
+          <div style="font-size: 0.7rem; color: #6c7a92;">${cert.progress}% complete — estimated completion: ${getEstimatedCompletion(certKey)}</div>
+        </div>
+      `;
+      
+      tabContent.classList.add('active');
+      terminalBody.scrollTop = terminalBody.scrollHeight;
+    }
+    
+    function getEstimatedCompletion(certKey) {
+      const dates = {
+        ccna: 'Q3 2026',
+        ccnp: 'Q3 2027',
+        oscp: 'Q1 2027',
+        security: 'Q4 2026'
+      };
+      return dates[certKey] || 'TBD';
+    }
+
+    async function animateTerminal() {
+      for (let i = 0; i < bootLines.length; i++) {
+        const line = bootLines[i];
+        
+        if (line.type === 'prompt') {
+          addLine('prompt', line.content);
+          await new Promise(resolve => setTimeout(resolve, 150));
+        } else if (line.type === 'command') {
+          const lineElement = addLine('command', '');
+          const commandSpan = lineElement.querySelector('.command');
+          if (commandSpan) {
+            await typeCommand(lineElement, line.content, 18);
+          }
+          await new Promise(resolve => setTimeout(resolve, 250));
+        } else {
+          addLine('output', line.content);
+          await new Promise(resolve => setTimeout(resolve, 40));
+        }
+      }
+      
+      // Pausa y muestra certificaciones
+      await new Promise(resolve => setTimeout(resolve, 600));
+      showCertifications();
+    }
+
+    // Configurar event listeners para tabs
+    function setupTabListeners() {
+      const tabs = document.querySelectorAll('.tab-btn');
+      tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          const certKey = tab.getAttribute('data-tab');
+          openCertTab(certKey);
+        });
+      });
+    }
+
+    // Iniciar animación
     window.addEventListener('load', () => {
-      setTimeout(animateTerminal, 500);
+      setTimeout(() => {
+        animateTerminal();
+        setTimeout(setupTabListeners, 3000);
+      }, 300);
     });
   </script>
 </body>
