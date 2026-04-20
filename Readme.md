@@ -6,78 +6,104 @@
 
 ## About Me
 
-Focused on cybersecurity, networking, and system security with a strong interest in offensive security and infrastructure.
+Aspiring Cybersecurity and Network Engineer focused on building secure systems, understanding network infrastructures, and developing practical security and backend tools.
 
-I enjoy understanding how systems work under the hood and how they can be tested, analyzed, and secured.
+Interested in low-level systems, networking, automation, and offensive security through hands-on learning.
 
 ---
 
-## Skills & Technologies
+## Tech Stack
 
-### Programming
-- Python
-- C++
-- Bash
+### Programming Languages
+<p align="left">
+  <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg" width="40" height="40"/>
+  <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/c/c-original.svg" width="40" height="40"/>
+  <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/cplusplus/cplusplus-original.svg" width="40" height="40"/>
+  <img src="https://www.vectorlogo.zone/logos/gnu_bash/gnu_bash-icon.svg" width="40" height="40"/>
+</p>
 
-### Networking & Security
-- TCP/IP, DNS, HTTP/HTTPS
-- Network scanning and enumeration
-- OSINT and external reconnaissance (Shodan)
-- Basic vulnerability analysis
+---
 
 ### Backend & APIs
-- FastAPI
-- Flask
-- REST API integration and automation
+- FastAPI (modern API development, async services)
+- Flask (web applications and API services)
+- REST API design and integration
+- API testing and workflows (Postman)
+
+---
 
 ### Databases
-- MySQL, PostgreSQL
+- MySQL
+- PostgreSQL
 - MongoDB
 - SQLite
+- SQL and NoSQL fundamentals
 
-### Systems
-- Linux (daily usage and terminal workflows)
-- Docker
-- Git
+---
+
+### Systems & DevOps
+<p align="left">
+  <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/linux/linux-original.svg" width="40" height="40"/>
+  <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/docker/docker-original-wordmark.svg" width="40" height="40"/>
+  <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/git/git-original.svg" width="40" height="40"/>
+</p>
+
+- Linux (daily use, terminal workflows, system administration basics)
+- Docker (basic containerization)
+- Git (version control and collaboration)
+
+---
+
+### Networking & Security
+- Network scanning and enumeration (Nmap)
+- OSINT and external reconnaissance (Shodan API)
+- HTTP / DNS / TCP-IP fundamentals
+- Basic vulnerability analysis and security concepts
+
+---
+
+### Infrastructure & Tools
+<p align="left">
+  <img src="https://www.vectorlogo.zone/logos/nginx/nginx-original.svg" width="40" height="40"/>
+  <img src="https://www.vectorlogo.zone/logos/getpostman/getpostman-icon.svg" width="40" height="40"/>
+</p>
+
+- Nginx (basic server understanding)
+- API testing tools
+- Linux server environments
 
 ---
 
 ## Cybersecurity Practice
 
-I actively improve my skills through hands-on learning platforms and challenges:
+Hands-on learning through real-world platforms and environments:
 
-- Hack The Box (HTB) – practice in penetration testing environments  
-- picoCTF – foundational cybersecurity and CTF challenges  
-- Personal labs and experimentation with security tools  
-
----
-
-## Projects
-
-- Web Fuzzer – automated discovery of hidden web endpoints  
-- Network Scanner – network reconnaissance and service detection tool  
-- Shodan Tool – external asset discovery using API integration  
+- Hack The Box (HTB) – offensive security labs and machines  
+- picoCTF – cybersecurity challenges and fundamentals  
+- Personal lab environments for testing tools and security concepts  
 
 ---
 
 ## Current Focus
 
-- Improving offensive security skills through CTF practice (HTB, picoCTF)  
-- Building backend and security automation tools  
-- Strengthening Linux and networking fundamentals  
-- Learning system design and secure architectures  
+- Improving backend development skills (FastAPI, APIs)
+- Strengthening Linux and networking fundamentals
+- Building cybersecurity and automation tools
+- Learning system architecture and secure design principles
+- Practicing CTF-style problem solving (HTB, picoCTF)
 
 ---
 
 ## Goals
 
-- Become a Cybersecurity and Network Engineer  
-- Participate regularly in CTF competitions  
-- Contribute to open-source security projects  
-- Build a strong technical portfolio in offensive security and networking  
+- Become a Cybersecurity and Network Engineer
+- Build strong backend and API development skills
+- Contribute to open-source security projects
+- Develop advanced networking and system knowledge
+- Build a strong technical portfolio in cybersecurity and automation
 
 ---
 
 ## Contact
 
-GitHub: [your username]
+GitHub: 0x21
