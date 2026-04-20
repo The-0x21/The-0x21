@@ -1,0 +1,209 @@
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@400;600&display=swap');
+*{box-sizing:border-box;margin:0;padding:0;}
+body,div,span,pre,table{font-family:'Share Tech Mono',monospace;}
+.root{background:#0e0e0e;padding:24px;border-radius:8px;}
+.red{color:#cc2200;}
+.dim{color:#777;}
+.w{color:#e0e0e0;}
+.hr{height:0.5px;background:#222;margin:20px 0;}
+.lbl{font-size:10px;letter-spacing:2px;color:#cc2200;margin-bottom:12px;}
+
+.hdr{display:flex;flex-direction:column;gap:16px;margin-bottom:24px;padding-bottom:20px;border-bottom:0.5px solid #222;}
+.ascii-wrap{background:#111;border:0.5px solid #1e1e1e;padding:14px 16px;overflow-x:auto;}
+.ascii{font-size:9px;line-height:1.25;color:#cc2200;white-space:pre;display:block;font-family:'Share Tech Mono',monospace;}
+.meta{display:flex;flex-direction:column;gap:8px;}
+.pname{font-family:'Rajdhani',sans-serif;font-size:28px;font-weight:600;letter-spacing:4px;text-transform:uppercase;color:#e0e0e0;}
+.pname span{color:#cc2200;}
+.tag{font-size:11px;color:#555;letter-spacing:1px;}
+.badges{display:flex;gap:6px;flex-wrap:wrap;}
+.badge{font-size:10px;padding:2px 8px;border:0.5px solid;letter-spacing:1px;font-family:'Share Tech Mono',monospace;}
+.br{border-color:#cc2200;color:#cc2200;}
+.bg2{border-color:#1d9e75;color:#1d9e75;}
+.bd{border-color:#333;color:#555;}
+
+.desc{font-size:11.5px;line-height:1.95;color:#666;margin-bottom:24px;}
+
+.mgrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin-bottom:24px;}
+.mc{background:#111;border:0.5px solid #1e1e1e;padding:11px 12px;}
+.mn{font-size:10px;color:#cc2200;margin-bottom:3px;}
+.mt{font-family:'Rajdhani',sans-serif;font-size:13px;font-weight:600;letter-spacing:1px;color:#e0e0e0;margin-bottom:4px;}
+.md{font-size:10px;color:#555;line-height:1.6;}
+
+.stack{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:24px;}
+.si{display:flex;align-items:center;gap:6px;background:#111;border:0.5px solid #1e1e1e;padding:5px 11px;font-size:10px;color:#555;}
+.dot{width:5px;height:5px;min-width:5px;background:#cc2200;}
+
+.tbl-wrap{overflow-x:auto;margin-bottom:20px;}
+table{width:100%;border-collapse:collapse;font-size:11px;table-layout:fixed;}
+th{text-align:left;color:#cc2200;font-weight:400;padding:6px 10px;border-bottom:0.5px solid #222;letter-spacing:1px;font-size:10px;white-space:nowrap;}
+td{padding:6px 10px;border-bottom:0.5px solid #1a1a1a;color:#555;word-break:break-word;}
+td:first-child{color:#ccc;}
+
+.inst-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-bottom:18px;}
+.ic{background:#111;border:0.5px solid #1e1e1e;padding:11px 12px;}
+.ios{font-size:10px;color:#cc2200;margin-bottom:5px;}
+.icode{font-size:10px;color:#555;line-height:1.75;}
+
+pre{background:#111;border:0.5px solid #1e1e1e;padding:12px 14px;font-size:11px;line-height:1.75;overflow-x:auto;margin-bottom:20px;color:#555;font-family:'Share Tech Mono',monospace;white-space:pre;}
+pre .r{color:#cc2200;}
+pre .g{color:#1d9e75;}
+pre .w{color:#ccc;}
+
+.flow{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:0;margin-bottom:24px;}
+.fstep{background:#111;border:0.5px solid #1e1e1e;padding:10px 11px;}
+.fstep+.fstep{border-left:none;}
+.fnum{font-size:10px;color:#cc2200;margin-bottom:3px;}
+.ftxt{font-size:10px;color:#555;line-height:1.5;}
+
+.warn{border:0.5px solid #2a0a00;background:#110500;padding:12px 14px;font-size:11px;color:#555;line-height:1.85;margin-bottom:20px;}
+.warn-lbl{color:#cc2200;font-size:10px;letter-spacing:1px;margin-bottom:5px;}
+
+.footer{display:flex;justify-content:space-between;align-items:center;padding-top:14px;border-top:0.5px solid #1e1e1e;flex-wrap:wrap;gap:8px;font-size:11px;color:#444;}
+</style>
+
+<div class="root">
+
+  <div class="hdr">
+    <div class="ascii-wrap"><span class="ascii"> 
+  ████████╗██╗  ██╗██████╗ ███████╗ █████╗ ████████╗
+  ╚══██╔══╝██║  ██║██╔══██╗██╔════╝██╔══██╗╚══██╔══╝
+     ██║   ███████║██████╔╝█████╗  ███████║   ██║
+     ██║   ██╔══██║██╔══██╗██╔══╝  ██╔══██║   ██║
+     ██║   ██║  ██║██║  ██║███████╗██║  ██║   ██║
+     ╚═╝   ╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝   ╚═╝
+  ██╗  ██╗ █████╗ ███████╗██╗  ██╗███████╗██████╗
+  ██║  ██║██╔══██╗██╔════╝██║  ██║██╔════╝██╔══██╗
+  ███████║███████║███████╗███████║█████╗  ██████╔╝
+  ██╔══██║██╔══██║╚════██║██╔══██║██╔══╝  ██╔══██╗
+  ██║  ██║██║  ██║███████║██║  ██║███████╗██║  ██║
+  ╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝</span>
+    </div>
+    <div class="meta">
+      <div class="pname">Threat<span>Hasher</span></div>
+      <div class="tag">// nmap + shodan recon tool v2.0</div>
+      <div class="badges">
+        <span class="badge br">OFFENSIVE SECURITY</span>
+        <span class="badge bg2">PYTHON 3.8+</span>
+        <span class="badge bd">CLI</span>
+        <span class="badge bd">LINUX / MACOS</span>
+        <span class="badge bd">MIT</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="lbl">// DESCRIPCION</div>
+  <div class="desc">
+    ThreatHasher es una herramienta de reconocimiento ofensivo de linea de comandos disenada para<br>
+    automatizar la fase de recon en auditorias de seguridad. Integra Nmap y la API de Shodan en<br>
+    un unico flujo interactivo para descubrir puertos, identificar servicios, detectar CVEs y<br>
+    exportar resultados en multiples formatos para su inclusion en informes.
+  </div>
+
+  <div class="hr"></div>
+  <div class="lbl">// MODULOS</div>
+  <div class="mgrid">
+    <div class="mc"><div class="mn">[01]</div><div class="mt">NMAP SCAN</div><div class="md">6 perfiles. Deteccion de OS, versiones y scripts NSE vuln.</div></div>
+    <div class="mc"><div class="mn">[02]</div><div class="mt">SHODAN</div><div class="md">Lookup de IP, query search con filtros, CVEs con CVSS.</div></div>
+    <div class="mc"><div class="mn">[03]</div><div class="mt">DNS & PING</div><div class="md">DNS forward/reverse, ping sweep de subredes, nslookup.</div></div>
+    <div class="mc"><div class="mn">[04]</div><div class="mt">EXPORT</div><div class="md">JSON completo, CSV de CVEs, reporte TXT para informes.</div></div>
+  </div>
+
+  <div class="hr"></div>
+  <div class="lbl">// STACK TECNICO</div>
+  <div class="stack">
+    <div class="si"><div class="dot"></div>Python 3.8+</div>
+    <div class="si"><div class="dot"></div>python-nmap</div>
+    <div class="si"><div class="dot"></div>Shodan API</div>
+    <div class="si"><div class="dot"></div>Nmap 7.x</div>
+    <div class="si"><div class="dot"></div>JSON / CSV / TXT</div>
+    <div class="si"><div class="dot"></div>ANSI Terminal</div>
+  </div>
+
+  <div class="hr"></div>
+  <div class="lbl">// REQUISITOS</div>
+  <div class="tbl-wrap">
+    <table>
+      <colgroup><col style="width:22%"><col style="width:18%"><col style="width:60%"></colgroup>
+      <tr><th>COMPONENTE</th><th>VERSION</th><th>NOTAS</th></tr>
+      <tr><td>Python</td><td>3.8+</td><td class="dim">Requerido</td></tr>
+      <tr><td>Nmap</td><td>7.x</td><td class="dim">Instalado en el sistema operativo</td></tr>
+      <tr><td>python-nmap</td><td>ultima</td><td class="dim">pip install python-nmap</td></tr>
+      <tr><td>shodan</td><td>ultima</td><td class="dim">pip install shodan</td></tr>
+      <tr><td>Shodan API Key</td><td>—</td><td class="dim">account.shodan.io (gratuita)</td></tr>
+    </table>
+  </div>
+
+  <div class="hr"></div>
+  <div class="lbl">// INSTALACION</div>
+  <div class="inst-grid">
+    <div class="ic"><div class="ios">DEBIAN / UBUNTU</div><div class="icode">sudo apt install nmap<br>sudo apt install python3 python3-pip<br>pip install python-nmap shodan</div></div>
+    <div class="ic"><div class="ios">ARCH LINUX</div><div class="icode">sudo pacman -S nmap<br>sudo pacman -S python python-pip<br>pip install python-nmap shodan</div></div>
+    <div class="ic"><div class="ios">MACOS</div><div class="icode">brew install nmap<br>pip install python-nmap shodan</div></div>
+  </div>
+<pre><span class="r">#</span> Configurar API Key
+export SHODAN_API_KEY=<span class="g">"tu_api_key_aqui"</span>
+
+<span class="r">#</span> Ejecutar
+python3 threathsher.py</pre>
+
+  <div class="hr"></div>
+  <div class="lbl">// PERFILES NMAP</div>
+  <div class="tbl-wrap">
+    <table>
+      <colgroup><col style="width:22%"><col style="width:16%"><col style="width:32%"><col style="width:30%"></colgroup>
+      <tr><th>PERFIL</th><th>PUERTOS</th><th>ARGUMENTOS</th><th>USO</th></tr>
+      <tr><td>Rapido</td><td class="dim">Top 100</td><td class="dim">-T4 -F</td><td class="dim">Reconocimiento inicial rapido</td></tr>
+      <tr><td>Estandar</td><td class="dim">1-1024</td><td class="dim">-sV -O -T4</td><td class="dim">Version y OS</td></tr>
+      <tr><td>Completo</td><td class="dim">1-65535</td><td class="dim">-sV -T4</td><td class="dim">Escaneo exhaustivo</td></tr>
+      <tr><td>Vulnerabilidades</td><td class="dim">1-1024</td><td class="dim">-sV -O --script vuln</td><td class="dim">Deteccion de CVEs via NSE</td></tr>
+      <tr><td>Stealth SYN</td><td class="dim">1-1024</td><td class="dim">-sS -T2 -O</td><td class="dim">Sigiloso, requiere root</td></tr>
+      <tr><td>Personalizado</td><td class="dim">definido</td><td class="dim">definidos</td><td class="dim">Argumentos manuales</td></tr>
+    </table>
+  </div>
+
+  <div class="hr"></div>
+  <div class="lbl">// SALIDA EN TERMINAL</div>
+<pre><span class="r">ThreatHasher ></span> 1
+
+  <span class="dim">[INFO]   Target  : </span><span class="w">192.168.1.1</span>
+  <span class="dim">[INFO]   Puertos : 1-1024</span>
+  <span class="dim">[INFO]   Args    : -sV -O --script vuln</span>
+  ----------------------------------------------------------------
+  <span class="g">[HOST]</span>  <span class="w">192.168.1.1</span>  (router.local)  [UP]
+          OS : Linux 4.15 (98%)
+  <span class="g">[OPEN  ]</span>  22   /tcp  ssh          OpenSSH 7.9
+  <span class="g">[OPEN  ]</span>  80   /tcp  http         Apache 2.4.38
+  <span class="g">[OPEN  ]</span>  443  /tcp  https        Apache 2.4.38
+  <span class="r">[VULN]</span>   http-vuln-cve2017-5638
+           Apache Struts 2 RCE vulnerability...
+  ----------------------------------------------------------------
+  <span class="g">[OK]</span>     Escaneo finalizado. 1 host(s) procesados.</pre>
+
+  <div class="hr"></div>
+  <div class="lbl">// FLUJO DE USO RECOMENDADO</div>
+  <div class="flow">
+    <div class="fstep"><div class="fnum">[01]</div><div class="ftxt">Configurar Shodan API Key en [5]</div></div>
+    <div class="fstep"><div class="fnum">[02]</div><div class="ftxt">Nmap rapido, identificar puertos</div></div>
+    <div class="fstep"><div class="fnum">[03]</div><div class="ftxt">Nmap vuln en hosts clave</div></div>
+    <div class="fstep"><div class="fnum">[04]</div><div class="ftxt">Shodan lookup CVEs historicos</div></div>
+    <div class="fstep"><div class="fnum">[05]</div><div class="ftxt">DNS para ampliar perimetro</div></div>
+    <div class="fstep"><div class="fnum">[06]</div><div class="ftxt">Exportar JSON + CSV + TXT</div></div>
+  </div>
+
+  <div class="hr"></div>
+  <div class="lbl">// AVISO LEGAL</div>
+  <div class="warn">
+    <div class="warn-lbl">ADVERTENCIA</div>
+    Esta herramienta es exclusivamente para uso etico y autorizado.<br>
+    Escanea unicamente sistemas sobre los que dispones de permiso explicito por escrito.<br>
+    El uso no autorizado puede ser constitutivo de delito segun la legislacion vigente.
+  </div>
+
+  <div class="footer">
+    <span>created by <span class="red">0x21</span></span>
+    <span>threathsher v2.0  //  nmap + shodan recon tool</span>
+  </div>
+
+</div>
