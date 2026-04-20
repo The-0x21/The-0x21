@@ -22,6 +22,14 @@ body,div,span,pre,table{font-family:'Share Tech Mono',monospace;}
 .bg2{border-color:#1d9e75;color:#1d9e75;}
 .bd{border-color:#333;color:#555;}
 
+/* GitHub Button Styles */
+.gh-btn-container{display:flex;justify-content:center;margin:24px 0 16px 0;}
+.gh-btn{display:inline-flex;align-items:center;gap:10px;background:#111;border:1.5px solid #cc2200;color:#cc2200;padding:10px 24px;font-size:13px;font-family:'Share Tech Mono',monospace;letter-spacing:1.5px;text-decoration:none;text-transform:uppercase;transition:all 0.2s ease;cursor:pointer;border-radius:4px;}
+.gh-btn:hover{background:#cc2200;color:#0e0e0e;box-shadow:0 0 12px rgba(204,34,0,0.4);}
+.gh-btn svg{fill:currentColor;transition:all 0.2s ease;}
+.gh-btn:hover svg{fill:#0e0e0e;}
+.btn-icon{width:18px;height:18px;}
+
 .desc{font-size:11.5px;line-height:1.95;color:#666;margin-bottom:24px;}
 
 .mgrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin-bottom:24px;}
@@ -92,6 +100,16 @@ pre .w{color:#ccc;}
     </div>
   </div>
 
+  <!-- GITHUB BUTTON SECTION -->
+  <div class="gh-btn-container">
+    <a href="https://github.com/The-0x21/ThreatHasher" target="_blank" class="gh-btn">
+      <svg class="btn-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 2C6.48 2 2 6.48 2 12c0 4.42 2.87 8.17 6.84 9.49.5.09.68-.21.68-.48 0-.24-.01-.88-.01-1.72-2.78.6-3.37-1.34-3.37-1.34-.45-1.15-1.11-1.46-1.11-1.46-.91-.62.07-.61.07-.61 1.01.07 1.54 1.04 1.54 1.04.89 1.52 2.34 1.08 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.26.1-2.62 0 0 .84-.27 2.75 1.02.8-.22 1.65-.33 2.5-.33.85 0 1.7.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.36.2 2.37.1 2.62.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.69-4.57 4.94.36.31.68.92.68 1.85 0 1.34-.01 2.42-.01 2.75 0 .27.18.58.69.48C19.13 20.17 22 16.42 22 12c0-5.52-4.48-10-10-10z"/>
+      </svg>
+      <span>VIEW ON GITHUB</span>
+    </a>
+  </div>
+
   <div class="lbl">// DESCRIPTION</div>
   <div class="desc">
     ThreatHasher is an offensive reconnaissance command-line tool designed to<br>
@@ -127,11 +145,11 @@ pre .w{color:#ccc;}
       <colgroup><col style="width:22%"><col style="width:18%"><col style="width:60%"></colgroup>
       <thead><tr><th>COMPONENT</th><th>VERSION</th><th>NOTES</th></tr></thead>
       <tbody>
-        <tr><td>Python</td><td>3.8+</td><td class="dim">Required</td></tr>
-        <tr><td>Nmap</td><td>7.x</td><td class="dim">Installed on the operating system</td></tr>
-        <tr><td>python-nmap</td><td>latest</td><td class="dim">pip install python-nmap</td></tr>
-        <tr><td>shodan</td><td>latest</td><td class="dim">pip install shodan</td></tr>
-        <tr><td>Shodan API Key</td><td>—</td><td class="dim">account.shodan.io (free tier)</td></tr>
+        <tr><td>Python</td><td class="dim">3.8+</td><td class="dim">Required</td></tr>
+        <tr><td>Nmap</td><td class="dim">7.x</td><td class="dim">Installed on the operating system</td></tr>
+        <tr><td>python-nmap</td><td class="dim">latest</td><td class="dim">pip install python-nmap</td></tr>
+        <tr><td>shodan</td><td class="dim">latest</td><td class="dim">pip install shodan</td></tr>
+        <tr><td>Shodan API Key</td><td class="dim">—</td><td class="dim">account.shodan.io (free tier)</td></tr>
       </tbody>
     </table>
   </div>
