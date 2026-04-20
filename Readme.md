@@ -4,106 +4,67 @@
 
 ---
 
+
 ## About Me
 
-Aspiring Cybersecurity and Network Engineer focused on building secure systems, understanding network infrastructures, and developing practical security and backend tools.
+Cybersecurity and Network Engineering enthusiast focused on analyzing, understanding, and building secure systems and network infrastructures.
 
-Interested in low-level systems, networking, automation, and offensive security through hands-on learning.
+Passionate about low-level computing, networking fundamentals, and developing practical security and automation tools through hands-on experience.
+
+Continuously learning through real-world experimentation, problem solving, and technical exploration.
 
 ---
 
 ## Tech Stack
 
 ### Programming Languages
-<p align="left">
-  <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg" width="40" height="40"/>
-  <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/c/c-original.svg" width="40" height="40"/>
-  <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/cplusplus/cplusplus-original.svg" width="40" height="40"/>
-  <img src="https://www.vectorlogo.zone/logos/gnu_bash/gnu_bash-icon.svg" width="40" height="40"/>
-</p>
+![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![C++](https://img.shields.io/badge/C++-00599C?style=for-the-badge&logo=c%2B%2B&logoColor=white)
+![Bash](https://img.shields.io/badge/Bash-121011?style=for-the-badge&logo=gnu-bash&logoColor=white)
 
 ---
 
 ### Backend & APIs
-- FastAPI (modern API development, async services)
-- Flask (web applications and API services)
 - REST API design and integration
-- API testing and workflows (Postman)
+- FastAPI (modern async API development)
+- Flask (web applications and API services)
+- API automation and testing workflows (Postman)
 
 ---
 
 ### Databases
-- MySQL
-- PostgreSQL
-- MongoDB
-- SQLite
-- SQL and NoSQL fundamentals
+- SQL (MySQL, PostgreSQL, SQLite)
+- NoSQL (MongoDB)
+- Data modeling and backend fundamentals
 
 ---
 
 ### Systems & DevOps
-<p align="left">
-  <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/linux/linux-original.svg" width="40" height="40"/>
-  <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/docker/docker-original-wordmark.svg" width="40" height="40"/>
-  <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/git/git-original.svg" width="40" height="40"/>
-</p>
+![Linux](https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black)
+![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
+![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white)
 
 - Linux (daily use, terminal workflows, system administration basics)
-- Docker (basic containerization)
+- Docker (containerization fundamentals)
 - Git (version control and collaboration)
 
 ---
 
 ### Networking & Security
+- TCP/IP, DNS, HTTP/HTTPS protocols
 - Network scanning and enumeration (Nmap)
-- OSINT and external reconnaissance (Shodan API)
-- HTTP / DNS / TCP-IP fundamentals
-- Basic vulnerability analysis and security concepts
+- OSINT and external reconnaissance (Shodan)
+- Vulnerability analysis fundamentals
+- Security tooling and automation concepts
 
 ---
 
 ### Infrastructure & Tools
-<p align="left">
-  <img src="https://www.vectorlogo.zone/logos/nginx/nginx-original.svg" width="40" height="40"/>
-  <img src="https://www.vectorlogo.zone/logos/getpostman/getpostman-icon.svg" width="40" height="40"/>
-</p>
+![Nmap](https://img.shields.io/badge/Nmap-4682B4?style=for-the-badge)
+![Shodan](https://img.shields.io/badge/Shodan-FF6B00?style=for-the-badge)
+![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white)
+![Flask](https://img.shields.io/badge/Flask-000000?style=for-the-badge&logo=flask&logoColor=white)
 
-- Nginx (basic server understanding)
-- API testing tools
-- Linux server environments
-
----
-
-## Cybersecurity Practice
-
-Hands-on learning through real-world platforms and environments:
-
-- Hack The Box (HTB) – offensive security labs and machines  
-- picoCTF – cybersecurity challenges and fundamentals  
-- Personal lab environments for testing tools and security concepts  
-
----
-
-## Current Focus
-
-- Improving backend development skills (FastAPI, APIs)
-- Strengthening Linux and networking fundamentals
-- Building cybersecurity and automation tools
-- Learning system architecture and secure design principles
-- Practicing CTF-style problem solving (HTB, picoCTF)
-
----
-
-## Goals
-
-- Become a Cybersecurity and Network Engineer
-- Build strong backend and API development skills
-- Contribute to open-source security projects
-- Develop advanced networking and system knowledge
-- Build a strong technical portfolio in cybersecurity and automation
-
----
-
-## Contact
-
-GitHub: 0x21
+- Nginx basics and server environments
+- API testing and debugging tools
+- Linux-based server environments
