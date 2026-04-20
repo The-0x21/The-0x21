@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-  <title>0x21 · Cybersecurity & Network Engineer</title>
+  <title>0x21 · OSCP-Level Cybersecurity & Network Engineer</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800;14..32,900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <style>
@@ -709,12 +709,12 @@
         <div class="glitch-wrapper">
           <div class="glitch">0x21</div>
         </div>
-        <div class="hero-sub">Aspiring Cybersecurity & Network Engineer</div>
+        <div class="hero-sub">OSCP-Level Cybersecurity & Network Engineer</div>
         <div class="hero-buttons">
           <button class="btn btn-primary" onclick="document.getElementById('interests').scrollIntoView({behavior: 'smooth'})">
             Explore <i class="fas fa-arrow-down"></i>
           </button>
-          <button class="btn btn-outline" onclick="window.location.href='terminal.html'">
+          <button class="btn btn-outline" onclick="showModal('Terminal', 'Terminal environment coming soon. Simulating a real pentesting rig.')">
             <i class="fas fa-terminal"></i> Terminal
           </button>
         </div>
@@ -751,71 +751,72 @@
       </div>
     </section>
 
-    <!-- SKILLS / TECH STACK -->
+    <!-- SKILLS / TECH STACK (OSCP ENHANCED) -->
     <section id="skills">
-      <h2 class="section-title">Tech Stack</h2>
+      <h2 class="section-title">Tech Stack & OSCP Arsenal</h2>
       <div class="skills-container">
         <span class="skill-item">Python</span>
         <span class="skill-item">C / C++</span>
         <span class="skill-item">Bash</span>
-        <span class="skill-item">FastAPI</span>
-        <span class="skill-item">Flask</span>
-        <span class="skill-item">PostgreSQL</span>
-        <span class="skill-item">MongoDB</span>
+        <span class="skill-item">PowerShell</span>
+        <span class="skill-item">Metasploit</span>
+        <span class="skill-item">Wireshark</span>
+        <span class="skill-item">Burp Suite</span>
+        <span class="skill-item">Ettercap</span>
+        <span class="skill-item">Netcat</span>
+        <span class="skill-item">Impacket</span>
+        <span class="skill-item">BloodHound</span>
+        <span class="skill-item">Mimikatz</span>
+        <span class="skill-item">John/Hashcat</span>
+        <span class="skill-item">Chisel</span>
+        <span class="skill-item">ligolo-ng</span>
+        <span class="skill-item">WinPEAS/LinPEAS</span>
         <span class="skill-item">Docker</span>
         <span class="skill-item">Linux</span>
         <span class="skill-item">Git</span>
         <span class="skill-item">Nginx</span>
-        <span class="skill-item">Nmap</span>
-        <span class="skill-item">Shodan</span>
       </div>
       <div class="action-section">
-        <h3 style="margin-bottom: 0.5rem;">Want to know more?</h3>
+        <h3 style="margin-bottom: 0.5rem;">OSCP-Level Toolset</h3>
         <div class="action-buttons">
-          <button class="action-btn" onclick="showModal('Technical Details', 'Full Stack:\n• Backend: FastAPI, Flask, REST APIs\n• DB: PostgreSQL, MongoDB, SQLite\n• DevOps: Docker, Linux, Nginx, Git\n• Security: Nmap, Shodan, Wireshark')"><i class="fas fa-terminal"></i> View Details</button>
-          <button class="action-btn" onclick="showModal('Resume', 'Technical CV download simulation. Full version available upon request.')"><i class="fas fa-download"></i> Download CV</button>
+          <button class="action-btn" onclick="showModal('Technical Details', 'Full OSCP Toolset:\n• Frameworks: Metasploit, Impacket, BloodHound\n• Recon: Nmap, Masscan, Shodan\n• Web: Burp Suite, SQLmap\n• Password: John, Hashcat, Hydra\n• PrivEsc: WinPEAS, LinPEAS, Mimikatz\n• Tunneling: Chisel, ligolo-ng')"><i class="fas fa-terminal"></i> View Arsenal</button>
+          <button class="action-btn" onclick="showModal('Certification Path', 'OSCP (PEN-200) preparation in progress. Skilled in AD attacks, web app pentesting, and privilege escalation.')"><i class="fas fa-certificate"></i> OSCP Progress</button>
         </div>
       </div>
     </section>
 
-    <!-- PROJECTS -->
+    <!-- PROJECTS - NOW WITH 2 REAL HTML REDIRECTS -->
     <section id="projects">
       <h2 class="section-title">Projects</h2>
       <div class="projects-grid">
         <div class="project-card">
           <div class="project-img"><i class="fas fa-globe" style="font-size: 3rem; color: #38bdf8;"></i></div>
           <div class="project-info">
-            <h3>Web Fuzzer</h3>
-            <p>Advanced directory & subdomain enumeration tool with multi-threading.</p>
+            <h3>Advanced Port Scanner</h3>
+            <p>Multi-threaded TCP/UDP scanner with service detection & banner grabbing.</p>
             <div class="project-tags">
               <span class="project-tag">Python</span>
               <span class="project-tag">Enumeration</span>
+              <span class="project-tag">OSCP</span>
             </div>
-            <button class="project-btn" onclick="showModal('Web Fuzzer', 'GitHub repository: github.com/0x21/web-fuzzer\nMulti-threaded, custom wordlists, response analysis.')"><i class="fab fa-github"></i> View on GitHub</button>
-          </div>
-        </div>
-        <div class="project-card">
-          <div class="project-img"><i class="fas fa-network-wired" style="font-size: 3rem; color: #38bdf8;"></i></div>
-          <div class="project-info">
-            <h3>Network Scanner</h3>
-            <p>Multi-threaded port scanner with service detection & banner grabbing.</p>
-            <div class="project-tags">
-              <span class="project-tag">Python</span>
-              <span class="project-tag">Nmap</span>
-            </div>
-            <button class="project-btn" onclick="showModal('Network Scanner', 'GitHub repository: github.com/0x21/network-scanner\nFast port scanning, service version detection, optional Nmap integration.')"><i class="fab fa-github"></i> View on GitHub</button>
+            <button class="project-btn" onclick="window.location.href='scanner.html'">
+              <i class="fas fa-rocket"></i> Launch Tool
+            </button>
           </div>
         </div>
         <div class="project-card">
           <div class="project-img"><i class="fas fa-search" style="font-size: 3rem; color: #38bdf8;"></i></div>
           <div class="project-info">
-            <h3>Shodan Integration</h3>
-            <p>Automated OSINT reconnaissance via Shodan API.</p>
+            <h3>Web Fuzzer</h3>
+            <p>High-performance directory, file and parameter fuzzer for web pentesting.</p>
             <div class="project-tags">
               <span class="project-tag">Python</span>
-              <span class="project-tag">OSINT</span>
+              <span class="project-tag">Fuzzing</span>
+              <span class="project-tag">Burp Suite</span>
             </div>
-            <button class="project-btn" onclick="showModal('Shodan Integration', 'GitHub repository: github.com/0x21/shodan-integration\nCollects open ports, services, and vulnerabilities for target IP ranges.')"><i class="fab fa-github"></i> View on GitHub</button>
+            <button class="project-btn" onclick="window.location.href='fuzzer.html'">
+              <i class="fas fa-rocket"></i> Launch Tool
+            </button>
           </div>
         </div>
       </div>
@@ -853,7 +854,7 @@
     </section>
 
     <footer>
-      <p>0x21 · constantly learning, building, securing</p>
+      <p>0x21 · constantly learning, building, securing — OSCP in sight.</p>
     </footer>
   </div>
 
@@ -869,6 +870,7 @@
       height = window.innerHeight;
       canvas.width = width;
       canvas.height = height;
+      initParticles(); // Regenerate particles on resize
     }
     window.addEventListener('resize', resizeCanvas);
     resizeCanvas();
@@ -900,7 +902,8 @@
 
     function initParticles() {
       particles = [];
-      for (let i = 0; i < 60; i++) {
+      let particleCount = window.innerWidth < 768 ? 40 : 80;
+      for (let i = 0; i < particleCount; i++) {
         particles.push(new Particle());
       }
     }
